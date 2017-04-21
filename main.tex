@@ -1,0 +1,750 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%2345678901234567890123456789012345678901234567890123456789012345678901234567890
+%        1         2         3         4         5         6         7         8
+
+\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out  
+                                                          % if you need a4paper
+%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4
+                                                          % paper
+
+\IEEEoverridecommandlockouts                              % This command is only
+                                                          % needed if you want to
+                                                          % use the \thanks command
+\overrideIEEEmargins
+% See the \addtolength command later in the file to balance the column lengths
+% on the last page of the document
+
+
+
+% The following packages can be found on http:\\www.ctan.org
+%\usepackage{graphics} % for pdf, bitmapped graphics files
+%\usepackage{epsfig} % for postscript graphics files
+%\usepackage{mathptmx} % assumes new font selection scheme installed
+%\usepackage{times} % assumes new font selection scheme installed
+%\usepackage{amsmath} % assumes amsmath package installed
+%\usepackage{amssymb}  % assumes amsmath package installed
+
+\title{\LARGE \bf
+Multiagent System in Irrigation Management. A Review*
+}
+
+%\author{ \parbox{3 in}{\centering Andrés F. Jiménez*
+%         \thanks{*Use the $\backslash$thanks command to put information here}\\
+%         Faculty of Electrical Engineering, Mathematics and Computer Science\\
+%         University of Twente\\
+%         7500 AE Enschede, The Netherlands\\
+%         {\tt\small h.kwakernaak@autsubmit.com}}
+%         \hspace*{ 0.5 in}
+%         \parbox{3 in}{ \centering Pradeep Misra**
+%         \thanks{**The footnote marks may be inserted manually}\\
+%        Department of Electrical Engineering \\
+%         Wright State University\\
+%         Dayton, OH 45435, USA\\
+%         {\tt\small pmisra@cs.wright.edu}}
+%}
+
+\author{Andr\'es F. Jim\'enez L\'opez$^{1}$ and Pedro F. C\'ardenas Herrera$^{2}$% <-this % stops a space
+\thanks{*This work was supported by Universidad Nacional de Colombia}% <-this % stops a space
+\thanks{$^{1}$A. Jim\'enez is with Faculty of Basic Sciences and Engineering, Universidad de los Llanos, Colombia. PhD student of Mechanical - Mechatronic Engineering. Universidad Nacional de Colombia
+        {\tt\small afjimenezlo@unal.edu.co}}%
+\thanks{$^{2}$P. C\'ardenas is with the Department of Mechatronic Engineering, Universidad Nacional de Colombia
+        {\tt\small pfcardenash@unal.edu.co}}%
+}
+
+
+\begin{document}
+
+
+
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+
+This electronic document is a ÒliveÓ template. The various components of your paper [title, text, heads, etc.] are already defined on the style sheet, as illustrated by the portions given in this document.
+
+\end{abstract}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{INTRODUCTION}
+
+The Food and Agriculture Organization (FAO) defines food security as a "situation that exists when all people, at all times, have physical, social, and economic access to sufficient, safe, and nutritious food that meets their dietary needs and food preferences for an active and healthy life". This definition comprises four key dimensions of food supplies: availability, stability, access, and utilization \cite{schmidhuber2007global}. In the 21st century, we now face an  environmental threat, namely global warming and climate change, which could cause irreversible damage to land and water ecosystems and loss of production potential \cite{fischer2002climate}. Farming activities rely on favorable climate conditions and are at risk under a changing climate \cite{niles2016farmer}.\\
+
+Climate change is associated with global warming that is induced by the increase in carbon dioxide and other radioactive trace gases in the atmosphere \cite{tekle2015assessment}. Nowadays climate change is expected to affect society in a number of ways ranging from food security to water resources \cite{fischer2002climate},\cite{tekle2015assessment},\cite{Perez2016},\cite{Bobojonov2016}. Water supply is of great importance for the sustainability of both urban and rural areas throughout the world. Climate change significantly influences the natural hydrological cycle which can contribute to water scarcity \cite{shadkam2016impacts}. Given the negative climate changes, increasing and more frequent pollution of groundwater and surface water, sustainable use of water by itself becomes imperative \cite{djurin2015sustainable}. Climate change projections suggest that historical water conditions may change significantly and seriously affect irrigators \cite{Perez2016}, \cite{doll2002impact}.\\
+
+Climate change could exacerbate water availability and the demand for water calculated a general increase in water use for crop irrigation and an according decrease in water availability for several regions \cite{tekle2015assessment},\cite{tekle2015assessment}, \cite{riediger2016modelling}. Such effects may include the magnitude and timing of runoff, the frequency and intensity of floods and droughts, rainfall patterns, extreme weather events, and the quality and quantity of water availability; these changes in turn influence the water supply system, power generation, sediment transport, deposition, and ecosystem conservation \cite{tekle2015assessment}.\\
+
+Future adaptation and mitigation strategies  \cite{jones2000analysing} are essential ingredients in impact and vulnerability (exposure to climatic stress, sensitivity and adaptive capacity \cite{de2017adaptability}) assessments. Adaptation refers to include the actions of adjusting practices, processes, structures and capital in response to the actuality or threat of climate change, as well as responses in the decision environment \cite{howden2007adapting}. Anticipatory and precautionary adaptation is more effective and less costly than forced, last-minute, emergency adaptation or retrofitting \cite{smit2003adaptation}.\\
+
+The strong trends in climate change already evident, the likelihood of further changes occurring, and the increasing scale of potential climate impacts give urgency to addressing agricultural adaptation more coherently \cite{howden2007adapting}. The impact of climate change occurs at multiple scales (global, regional and national) and sectors (including agriculture) \cite{olayide2016differential}; nevertheless
+it is particularly important to align the temporal and sectoral scales. A significant benefit from adaptation research may be to understand how short-term response strategies may link to long-term options to ensure that, at a minimum, management and/or policy decisions implemented over the next one to three decades do not undermine the ability to cope with potentially larger impacts later in the century \cite{howden2007adapting}. Successful adaptation requires a recognition of the necessity to adapt, knowledge about available options, the capacity to assess them, and the ability to implement the most suitable ones \cite{smit2003adaptation}. 
+
+The understanding of complex water resource systems under combined and interdependent climatic and anthropogenic forcing is the key for feasible adaptation strategies and should be tackled under a comprehensive modeling framework able to include possible variations of the irrigation water demand and consequent adaptation options \cite{Guyennon2016}. Hence, the current level of technology in the communities and its ability to develop technologies are important determinants of adaptive capacity. These adaptations include a wide array of engineering measures, improvements, or changes, including: negotiating regional water-sharing agreements, providing efficient mechanisms for water management, developing desalination techniques and improving drainage facilities \cite{smit2003adaptation}. Farmers need to be actively involved and to make capital contributions towards the establishment, rehabilitation and water management of their irrigation schemes. This was found to inculcate, onto the farmers, the sense of ownership and responsibility needed for sustainable water management \cite{mutambara2016comparative}.\\
+
+Global climate change presents challenges for mitigating and adapting natural resource use and management locally and regionally. This is particularly true in subsistence agriculture areas where natural and economic resources are limited \cite{thenkabail2011improving}. For example broad utilization of drip irrigation technologies in Israel has contributed to the 1600 percent increase in the value of produce grown by local farmers over the past sixty-five years. In contrast, empirical findings increasingly report damage to soil and to crops from salinization caused by irrigation with effluents. Inappropriate irrigation practices that systematically deliver salt to soils will eventually be disastrous for the environment. One estimate suggests that at least 20\% of irrigated lands on the planet suffer from significant soil salinization. Climate change in many regions threatens to exacerbate salinization phenomena \cite{tal2016rethinking}.\\
+
+To feed 9 billion people nutritiously by 2050 we need to make agriculture resilient, more productive in changing landscapes, and aggressively reduce food waste. Making agriculture work for the people and the environment is one of the most pressing tasks at hand. We need climate-smart agriculture that increases yields and incomes, builds resilience, and reduces emissions while potentially capturing carbon \cite{Kyte2014cambio}.\\
+
+Optimal irrigation is of critical importance for agriculture with decreasing freshwater resources in times of climate change. About 70\% of the global water withdrawal and 85\% of the consumptive water use is for irrigation. Approximately 40\% of the total food production relies on supplemental irrigation. Unfortunately water use efficiency (WUE) in the agricultural sector is very poor with more than 50\% water losses \cite{Grashey-Jansen2014}.\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{IRRIGATION AND THEIR AUTOMATION}
+
+Decision making on irrigation systems (IS) are based on the analysis of three criteria:  economical, water management and ecological \cite{zhemukhov2016system}. Depending on the soil coverage and associated physical characteristics such as the water holding capacity of soils the necessity of land use adaptations might arise to cope with climate change \cite{riediger2016modelling}.\\ 
+
+Irrigation requirements depends on how much water the cultivation of a particular crop species requires and how much water is available from local sources \cite{riediger2016modelling}. A plant uses only part of the applied water, the difference between the potential evapotranspiration and the evapotranspiration that would occur without irrigation, is the net irrigation requirement. The other part of the added water serves to leach salts from the soil, leaks or evaporates unproductively from irrigation canals, or runs off; this amount depends on irrigation technology and management. The ratio of the net irrigation water requirement and the total amount of water that needs to be withdrawn from the source, the gross irrigation requirement, is called irrigation water use efficiency. Under conditions of restricted water availability, farmers may choose to irrigate at a lower than optimal rate \cite{doll2002impact}.\\
+
+The water balance approach is not optimal but often used in irrigation modelling and simulation.s necessary a permanent recalibration of water balance based models. Apart from the wastage of water, over-irrigation is also accompanied by problems of soil degradation like surface runoff, soil erosion and nutrient leaching \cite{Grashey-Jansen2014}.\\
+
+The DSS-FS estimates the maximum volume of soil available water according to its ﬁeld capacity, wilting point and root depth. According to Allen et al. (1998),
+the water volume that can be stored in the soil and be used by the plants is known as the Total Available Water (TAW): TAW ¼ ðh fc h wp ÞZ ð1Þ where TAW – total available water [mm]; hfc – soil moisture content by volume at ﬁeld capacity [m 3 m 3 ]; hwp – soil moisture content by volume at wilting point [m 3 m 3 ]; Z – root depth [mm] \cite{Barradas2012}.
+
+A variety of technologies are available in the market that seeks to reduce irrigation water use. These technologies include rain sensors, and soil moisture sensor (SMS) based and evapotranspiration (ET) based controllers The treatments were: SMS) an irrigation controller with a soil moisture sensor, ET) an evapotranspiration based controller, ED) a standard irrigation controller using seasonal runtimes based on historical climate data and Control) irrigation controller with no intervention \cite{nautiyal2010evaluation}.
+
+The Smart Water Application Technology (SWAT) committee of the Irrigation Association (IA, 2007) defines ‘Smart controllers’ as those technologies that “Estimate or measure depletion of available plant soil moisture in order to operate an irrigation system along with replenishment of water as needed while minimizing excess water use. A properly programmed smart controller requires initial site specific set-up and will make irrigation schedule adjustments, including run times and required cycles, throughout the irrigation season without human intervention” \cite{nautiyal2010evaluation}. 
+
+TAW should be the sum of the wet volumes of soil formed by the wet zones under the irrigation pipe where the wet bulbs corresponding to each dripper cross each other and form a sort of wet cylinder under and along the irrigation line. In order to estimate the volume of this wet cylinder it would be convenient to know the geometric characteristics of the individual wet bulbs from which it was created. One of the innovative features of DSS-FS is to obtain a geometrical coefﬁcient ‘‘c’’ (see Eq. (6)) in order to estimate the volume of the wet cylinders beneath the drippers \cite{Barradas2012}.
+
+
+Temperature, Relative humidity, soil moisture, pH, solar radiation among others, are environmental parameters that plays very important role in overall development of the plant. Increasing temperature will lead to higher evapotranspiration and could generate soil moisture deficits followed by a growing risk of vegetation desiccation and decreasing plant development \cite{riediger2016modelling}. Also at higher temperature, respiration rate increases that result in reduction of sugar contents of fruits and vegetables. At lower temperatures photosynthesis activity is slowed down. Relative Humidity is responsible for moisture loss and temperature management of the plant. For high humidity environment, evapotranspiration will be less and more water will saturated in the leaf area. This results in enlargement and formation of fungus in the porous area of the leaf \cite{Gawali}.\\ 
+
+Soil moisture deficits can arise in times when evapotranspiration is higher than precipitation and soil water storage is not sufficient to maintain plant provision \cite{riediger2016modelling}. Moisture is critical for seed germination and uptake of nutrients by the plant. Excess water may stop gaseous exchange between soil and the atmosphere which reduces root respiration and root growth. Optimum level of moisture ensures healthy growth of the root and overall development of the plant \cite{Gawali}.\\
+
+Automatic control has been applied in almost all engineering fields with great success, and the more rational approach for optimizing irrigation is the use of automatic irrigation controllers. A straightforward control is the open-loop control, in which no measurements of the field are used to modify the inputs and the decisions are taken based on heuristics, expert knowledge or a system model. To avoid some problems of open-loop controllers are used the closed-loop controllers, that use the information of the consequences of previous behaviors to calculate the next action (feedback) \cite{Romero2012}. 
+
+Any measurement or estimation in the SPA (Soil, Plant and Atmosphere) system could be used as a target or as an intermediate variable in the irrigation control strategy. Main irrigation scheduling systems use soil water measurements (water potential or water content), soil water balance (estimations of evaporation and rainfall) and plant-based measurements (dendrometer, sap ﬂow sensors, tissue water status or stomatal conductance). The most popular strategy to calculate the irrigation dose is based on a feed-forward strategy, which consists on applying irrigation to refill the water used by the plants the previous day, using crop potential evapotranspiration (ETc) or changes in the soil water content. This method is in fact an open-loop controller and it presents some limitations that can be overcome by the use of feedback, mathematical models and additional information provided by plant measurements \cite{Romero2012}.\\
+
+
+The adoption of irrigation control strategies, aimed at attaining the desired level of humidity for each plant type, can improve the costs and energy consumed in small-scale site-speciﬁc irrigation systems \cite{Isern2012}
+
+Sensors of humidity: devices that measure the current status of the soil. Fertilization: the irrigation system adds this feature to improve the growth of the plants. The level of fertilization depends on the season of the year and the type of plant. The decision support system is able to estimate if this process is required or not. Additionally, the user can force the fertilization at any time. Pressure of water: measured in bars, which should be constant through the whole irrigation system. An incorrect pressure can produce a dysfunction in any part (sprinklers, connection lines, etc.) or an insufficient irrigation. A zero pressure indicates that a sprinkler is not working \cite{Isern2012}
+
+New methods in irrigation management are using crop-based methods by sensing the plant water-stress (measurement of plant water status, sap flow, xylem cavitation or stomatal conductance) for irrigation control. Better results in PI might potentially be obtained by plant-stress methods combined with soilwater based methods because the soil water dynamic at irrigated sites is a decisive factor for irrigation efficiency ( IE)\cite{Grashey-Jansen2014}.\\
+However, important parameters like soil textures and corresponding water retention functions are unconsidered by most of the irrigation strategies so far although they could be responsible for pivotal soil hydrological properties\cite{Grashey-Jansen2014}.\\
+Site-specific irrigation (SSI) has partially been achieved by the use of innovative technologies, but well-documented and proven water saving strategies using SSI are quite limited
+The plant-available water content (PAWC) between the wilting point (θ WP ) and the field capac ity (θ FC ) is decisively influenced by the soil compo sition and can be perceived as the most important component for high irrigation efficiency and the WUE\cite{Grashey-Jansen2014}.\\
+
+But mostly the nonlinear relationship between the volumetric soil water content (SWC) and the soil water tension (SWT) is neglected. In fact, the amount of water is mostly given according to subjective irrigation schedules. So the main objective of SSI- and PI-techniques is to find the optimal strategy and schedule to enhance soil moisture distribution and WUE\cite{Grashey-Jansen2014}.\\
+
+Algorithms (data mining) that can analyze data records (or transrecords for nulti-variable analysis) and identify Models (maintenance of Knowledge) or transform data to supporting processes and identify missing properties or parameters of a grey system. There are a considerable number of Intelligent Data Analysis tools (ANNs, GAs, fuzzy models, SVMs (8), assisted by powerful methods like gradient descent back propagation, machine learning methods, etc.) and create evolving systems that become smarter every day or growing up artificial life (avatars etc.), with a lately upcoming technology the Agents style of programming that can encompass all said modern computer capabilities) \cite{Li}.\\
+
+
+Efficient irrigation schedule should be based on evapotranspiration rates, performing a simple water balance, or on root zone sensors \cite{Li}.\\
+
+
+It is likely that the control requirements will be specific to the irrigation application system employed. However, in all cases there will be a need to: · sense the water application and crop response at a scale appropriate for management, · make a decision for improved irrigation management using both historical (and possibly predictive) data, and · control either the current (in real-time) or subsequent irrigation applications at an appropriate spatial scale \cite{Smith2011}.\\
+
+This leads directly to the conceptualization of a precision irrigation system as one that can: 1. Determine the timing, magnitude and spatial pattern of applications for the next irrigation to give the best chance of meeting the seasonal objective (i.e. maximization of yield, water use efficiency or profitability); 2. Be controlled to apply exactly (or as close as possible to) what is required; 3. Through simulation or direct measurement knows the magnitude and spatial pattern of the actual irrigation applications and the soil and crop responses to those applications; and 4. Utilize these responses to best plan the next irrigation \cite{Smith2011}.\\
+
+The second is the scale of the actual spatial variability in the irrigation applications. In practice this will be the scale at which the variation of the actual applications can be measured or predicted. This will also be the scale at which the crop simulation model will determine the crop response to the irrigation and predict forward in time to predict the effect on yield and water use efficiency. The data at this scale will also used in planning the next irrigation \cite{Smith2011}.\\
+
+The third scale is the scale of the crop variability which will be related to the root zone extent of the individual plants. The final scale is that associated with any sensing of crop or soil parameters. This will most likely be the largest of the four scales and needs only to be sufficiently frequent to ground truth the relevant simulation model \cite{Smith2011}.\\
+
+Schueller (1997) identified five types of management response to the spatially variability of soil and crop properties within a field. Of these two are particularly important, viz: · automatic – in which a real time response follows immediately that some variable quantity is measured; and · temporally separate – in which the appropriate action occurs some time (possible next season) after the measurement and recording. In each case there are four essential steps in the process and technologies required (Kitchen et al., 1996): (i) data acquisition; (ii) interpretation; (iii) control; and (iv) evaluation.
+The prevailing wisdom is that precision irrigation should meet the needs of the crop in a timely manner and as efficiently and as spatially uniformly as possible \cite{Smith2011}.\\
+
+Canopy temperature measurements are compared to those obtained from a non-water stressed and a non-transpiring crop, and most commonly expressed as a crop water stress index (CWSI) \cite{Smith2011}.\\
+
+
+This leads directly to the conceptualisation of a precision irrigation system as one that can: 5. Determine the timing, magnitude and spatial pattern of applications for the next irrigation to the best chance of meeting the seasonal objective (i.e. maximisation of yield, water use efficiency or profitability); 6. Be controlled to apply exactly (or as close as possible to) what is required; 7. Through simulation or direct measurement knows the magnitude and spatial pattern of the actual irrigation applications and the soil and crop responses to those applications; and 8. Utilise these responses to best plan the next irrigation \cite{Smith2011}.\\
+In other words we have a system that: 5. Knows what to do; 6. Knows how to do it;
+7. Knows what it has done; and 8. Learns from what it has done. The following sections discuss how this conceptualisation can be applied to the more common surface and mechanised irrigation application systems \cite{Smith2011}.\\
+
+The VARIwise system of McCarthy et al. (2010) can provide this layer of real-time decision support. Although developed originally for control of applications from centre pivot and lateral move machines it has the potential to be a holistic irrigation management tool applicable to all irrigation application methods \cite{Smith2011}.\\
+
+For a machine to exhibit intelligence, it has to interpret and analyze the input and result data apart from simply following the instructions on that data. This is what the machine learning algorithms do, using supervised  Problems like classification and regression come under this category. Popular supervised learning algorithms are Artificial neural networks, Decision trees, K-means clustering, Support vector machines, Bayesian networks etc. and Unsupervised Learning: Self organized feature maps, COBWEB, DBSCAN  and Reinforcement Learning: feedback received, Genetic algorithms, Markov decision algorithms.  These techniques will enhance the productivity of fields along with a reduction in the input efforts of the farmers \cite{kaur2016machine}.
+
+Likewise, weather prediction based on machine learning technique called Support Vector Machines had been proposed [5].
+To combat the scarcity of water, many companies have come up with sensor based technology for smart farming which uses sensors to monitor the water level, nutrient content, weather forecast reports and soil temperature.
+3 Smart Irrigation System Aditya Gupta et al General Machine learning algorithms  \cite{kaur2016machine}.
+
+Irrigation is the process of application of water to a land or soil. It is used for enhancing the growth of agricultural crops, maintaining landscapes, and revegetation of degraded soils in dry areas and periods of inadequate rainfall \cite{Mrinmayi2016}. \\
+
+For example, in one system the distribution of canopy temperature was considered for scheduling the irrigation for the crop [1]  \cite{Mrinmayi2016}. \\
+
+Moreover, there are other systems that have been developed to optimize water consumption by taking into account crop and water stress index (CWSI) [2]  \cite{Mrinmayi2016}. \\
+
+Instead of a predetermined schedule of irrigation, the systems can acquire information on volumetric water content of soil and be automated [3]  \cite{Mrinmayi2016}. \\
+The use of automated irrigation system to reduce water consumption was done in a system that composed of a distributed wireless network of soil moisture and temperature sensors placed near roots of plants \cite{Mrinmayi2016}. \\
+
+
+Water stress inﬂuences stomata resistance, induces changes in internal and surface leaf structure and leads to breakdown of photosynthesis pigments. These changes can be detected by imaging. Water content affects the photosynthetic response of moss  \cite{Hendrawan2011}.
+
+The use of ICTs requires the integration of sensors in the software that controls the irrigation. This software has to be able to take data in real time, analyze it, and make decisions. In the case of irrigation of greenhouse crops, this means that the software has to decide when to irrigate and how much water to apply \cite{Rodriguez-Ortega2017}. \\
+
+In soilless systems in greenhouses these two aspects depend on a number of variables such as the quality of irrigation water, cultivation system, phenological state of the plants, irrigation system, electrical conductivity (EC) of the nutrient and drainage solutions, quantity of nutrients required by the plants, solar radiation, vapor pressure deﬁcit, and ambient temperature observed, in tomato crops under Mediterranean conditions, that intelligent irrigation scheduling techniques are able to increase the crop water use efﬁciency by increasing production and saving irrigation water.   \cite{Rodriguez-Ortega2017}. \\
+
+The Department of Plant Nutrition at the CEBAS-CSIC (Murcia, Spain) has developed a smart irrigation system, named “HortiControl Expert”, that is capable of managing irrigation automatically and simply based on the real-time monitoring of solar radiation, volume of applied irrigation, and volume and EC of the drainage solution  \cite{Rodriguez-Ortega2017}. \\
+
+
+
+
+Some control strategies with application in irrigation that are able to switch on/off the irrigation pump and to open or close the valves to apply the irrigation doses to every sector of the crop are: 
+
+\begin{itemize}
+\item On-Off control. Consisting on switching the controller output between maximum and minimum output according to a error signal. Examples of this kind of strategy are: soil water content \cite{boutraa2011evaluation}, \cite{cardenas2010sensor}, \cite{miranda2005autonomous}; canopy temperature \cite{o2010canopy}, \cite{peters2008automation}; soil matric potential \cite{caceres2007adaptation}, \cite{romero2008automatic} and sap flow \cite{fernandez2008design}.
+\item PID (Proportional-Integral-Derivative) control. The control signal depends of the weighted sum of three terms: the error between the variable and the set-point, the integral of recent errors, and the rate by which the error has been changing. PID control utilize measurements of a single output variable (temperature, relative humidity, soil moisture or meteorological conditions) to compute the control action needed to be implemented by a control actuator so that this output variable can be regulated at a desired set-point value. The application of a PID strategy, has not yet been extensively considered in commercial irrigation controllers. Example using soil water content \cite{romero2011hydraulic}. 
+\item Fuzzy logic control. Fuzzy logic interprets real uncertainties and becomes ideal for nonlinear, time-varying and heuristic knowledge to control a system. Example using soil water content, air temperature and light intensity \cite{xiang2010design}, using soil measurements (moisture and temperature) and solar radiation \cite{Touati2013}.
+\item Genetic algorithms.
+\item MPC (Model predictive control). There are few agricultural applications (mainly for regulating weather conditions in controlled environments such as greenhouses) because it is difficult to obtain precise models appropriate for control purposes; however, it is a promising methodology for the design of irrigation controllers. Example using soil water content \cite{romero2011hydraulic}.
+\item Non linear control.
+\item Artificial neural networks are not really a class of controllers, but a modeling framework which can be used in advanced model based controllers. Example using soil water content \cite{capraro2008neural}. Back-Propagation Neural Network (BPNN) model performance was tested successfully to describe the relationship between water content of Sunagoke  \cite{Hendrawan2011}.
+\item Commercial automatic controllers. These controllers apply irrigation when sensors detect that the measurements are below a certain predefined threshold until another predefined threshold is overcome (on–off control). Using soil water content Acclima \cite{Acclima2017}, Watermark \cite{Watermark2017}, Rain bird \cite{RainBird2017}, Water Sense \cite{WaterSense2017}.
+\end{itemize}
+
+In Qatar, wastage of water in irrigation is mainly caused by; ﬁrst: the use of traditional techniques which are based on timers such as basins and furrows irrigation (Gillies and Smith, 2005), and second: the water loss through ground evaporation and crop transpiration (so-called evapotranspiration ET). In the ﬁrst case, research has shown that people over-irrigate crops due to the misunderstanding of seasonal water need or the impracticality of updating the irrigation schedule to reﬂect actual water needs of the landscape (Haley et al., 2007). In this scenario, people generally adjust timers by observing the crop and irrigating when it looks stressed (qualitative). On the other hand, the loss by evapotranspiration is inevitable and accentuated by the hyper-arid environment under untapped ambient temperature and solar radiation of 6 kW h/m 2 /day where daylight is about 4449 h/year (Touati et al., 2013). Here, there is a need for automated irrigation systems that are able to deliver the exact quantity of water required by the crop for proper irrigation while reducing ET losses \cite{Touati2013}. \\
+
+
+Water resources planning of river basin was a halfstructural or non-structural problem and the application of artificial intelligence technology could make the water resources planning more scientific and more accurate. The common artificial intelligence technologies were introduced in detail, which included expert system, decision support system and intelligent optimization algorithm \cite{chen2010application}.
+
+The artificial intelligence technology was born in 1950s, which aims were how to use the computer to simulate the intelligent behaviors of human beings. Therefore, the study on rational use of water resources was becoming increasingly important. And the application of artificial intelligence technology into the management of water resources could accelerate the allocation of water resources to the scientific and the utilization of water resources to the rational development\cite{chen2010application}.
+
+There are several studies discussing the pros and cons of openloop and closed-loop control systems (McCreadya et al., 2009; Rahangadale and Choudhary, 2011; Obota and Inyama, 2013). According to (Wade and Waltz, 2004; Jaume et al., 2012), the most deployed method of irrigation control is the closed-loop which splits into two categories; feed-forward and feedback control. In the feedback control, the idea is to maintain soil moisture (i.e. plant’s water stress) within a speciﬁc range by measuring crop’s needs from soil moisture levels using instruments such as tensiometers or dielectric probes (Javadi et al., 2009). However, in the feedforward control (known as ET control), controllers use the crop’s reference evapotranspiration (ETo) to schedule irrigation compensating then for ET water loss through the water balance technique. Climatic conditions have direct inﬂuence on ETo (Davis and Dukes, 2010), which can be calculated by using Penman Monteith model as this has been ofﬁcially adopted by the FAO (Allen et al., 1998; Roy et al., 2009; Yang et al., 2010) \cite{Touati2013}. \\
+
+
+Techniques and fields of Artificial Intelligence \cite{bustos2005inteligencia}:
+- Machine Learning. Is a branch of AI that aims to develop techniques that allow computers to learn. 
+- Knowledge Engineering. Analyze learning methods and apply them to computers so that it is possible to develop a system capable of learning by itself, is to extract knowledge from human experts and to encode knowledge in a way that can be processed by a system.
+- Fuzzy Logic. Multi-valued logic which includes logical systems that support several possible truth values. 
+- Artificial Neural Networks. Are programs of learning and automatic processing inspired by the way the nervous system of living beings function. It consists of simulating the properties observed in biological neuronal systems through mathematical models recreated by artificial mechanisms.
+- Multi Agent Systems or Distributed Artificial Intelligence: A multi agent system is a distributed system in which nodes or elements are artificial intelligence systems, or a distributed system where the combined behavior of those elements produces a intelligent result.
+- Case-Based Reasoning. Seeks to provide solutions based on similar problems in the past, which are called cases, to find solutions to them, modify solutions and explain anomalous situations. Case-based reasoning systems are able to use specific knowledge of previous experiences to solve a problem. They capture the characteristics of this problem, look for historical cases with similar values for these characteristics, analyze the solutions of these cases and propose a solution to the problem, and finally learn from the current problem for future problems.
+- Expert Systems. Are programs that mimic the behavior of a human expert, manipulating codified knowledge to solve problems in a specialized domain in order to solve a problem in a particular domain through logical deduction of conclusions .
+- Bayesian Networks or Probabilistic Networks. Are a graphical representation of dependencies for probabilistic reasoning in expert systems, it consists of a representation in an acyclic graph and a set of conditioned probability distributions (one per node) where the distribution at each node is conditioned to the possible value of each of the parents.
+- Artificial Life is the study of life and artificial systems that exhibit the behavior characteristic of living beings through simulation models, pretending to reproduce the typical processes and behaviors with the aim of solving problems.
+- Evolutionary Computation. Takes up concepts of nature, evolution and genetics to solve computer problems. This branch of AI has its roots in three related but independent developments: 1) Genetic Algorithms: These algorithms evolve a population of individuals by subjecting it to random actions similar to those that act in biological evolution (mutations and genetic recombination) As well as to a selection according to some criterion, according to which it is decided which are the most adapted individuals, who survive and which are the least fit that are discarded. 2) Evolutionary Strategies: computational methods that work with a population of individuals that through the processes of mutation and recombination, and using selection techniques (probabilistic or deterministic) eliminates the worst solutions of the population, evolving to reach the optimum of Objective function. 3) Evolutionary Programming: it is a variation of the evolutionary strategies, only that it does not use recombination techniques and mutation to find the solution.
+- Data Mining Also or KDD (Knowledge Discovery in Databases) can be defined as "non-trivial extraction of implicit information, previously unknown, and potentially useful from the data", and consists of the set of advanced techniques For the extraction of information hidden in large databases.
+
+This study employs artificial intelligence algorithms composed of artificial neural network and fuzzy logic, using weather data to simulate soil moisture changes to develop an optimal irrigation strategy. The artificial neural network is trained to predict soil moisture based on four daily weather variables: real-time air temperature, relative humidity, solar radiation, and wind speed. Fuzzy-neural network is applied to determine the irrigation time and watering volume \cite{Tsang2016}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{IEDSS AND MULTIAGENTS}
+
+
+Decision support systems (DSS) are nowadays widely used across many industries. DSS is intended to support decision makers in the decision making process. It can be used for both structured and unstructured decision. However, it cannot replace the decision maker itself. DSSs do not possess the human decision making abilities – intuition, creativity, or imagination. \cite{KOvZIvSEK}.
+
+Marakas [1] presents multiple classifications of DSS, too, focusing on several criteria. Based on its orientation, DSS can be classified either as DataCentric or Model-Centric. While data-centric DSS is primarily focused on the data which it processes, model-centric DSS is rather oriented on simulations and optimization modeling. Other way how to classify DSS is on the way it is used by its users – formal and ad-hoc systems. While formal systems are used on regular basis for recurring decision making, ad-hoc system are focused on helping to solve some immediate ad-hoc problems the decision maker faces \cite{KOvZIvSEK}.
+
+DSS can be also classified into directed and nondirected systems. While directed DSS gives guidance to its user to structure and execute the decision making, the non-directed DSS stays on the other pole by not giving any guidance. Obviously DSSs are not black and white and one should rather talk about the degree of guidance DSS provides to the user. Last division we mention here is on individual and group DSSs. Many decisions cannot be taken by individuals but rather should be taken by a group of specialists. The extent to which DSS support group decision is thus an important factor \cite{KOvZIvSEK}.
+
+In the future, a Multi-Agent System will be used to implement the software components. the management of a basin river in a country air pollution control and management systems  \cite{S`anchez-Marr`e2014}.\\
+
+A model is a description of a system, usually a simplified description less complex than the actual system, designed to help an observer to understand how it works and to predict its behaviour.
+
+Typically, models could be divided into mechanistic models and empirical models. Mechanistic models are based on an understanding of the behaviour of a system's components, analysing the system from its firstprinciples. Usually these mechanistic models are expressed a as set of mathematical formulas and equations (differential equations, etc.)  \cite{S`anchez-Marr`e2014}.\\
+
+Empirical models are based on direct observation, measurement and extensive data records.
+he first empirical models used were mathematical and statistical methods like Multiple Linear Regression (MLR) models, Principal Component Analysis (PCA) models, Discriminant Analysis (DA) models, Logistic Regression (LR)
+models, Statistical Clustering models, etc.  \cite{S`anchez-Marr`e2014}.\\
+
+Artificial Intelligence area, lead to the use of another kind of empirical models: the intelligent data analysis models. Some instances are the Association Rules (AR) model, Classification Rules (CR) models, Decision Tree (DT) models, Artificial Neural Networks (ANN) models, Case-Based Reasoning (CBR) models, Fuzzy Logic (FL) models, Evolutionary Computation (EC) models, Bayesian Networks (BN) models, Conceptual Clustering (CC) models, etc. \cite{S`anchez-Marr`e2014}.\\
+
+Since the 80s, both the former mathematical/statistical empirical models and the later machine learning empirical models have been named as data mining methods, because the models constructed are the result of a mining process among the data  \cite{S`anchez-Marr`e2014}.\\
+
+
+With the use of data mining models coming from the Artificial Intelligence field, the EDSS have been evolved to the Intelligent Environmental Decision Support Systems (IEDSS) (Sànchez-Marrè et al., 2006)
+IEDSS integrate the expert knowledge/data stored by human experts through years of experience in the process operation and management  \cite{S`anchez-Marr`e2014}.\\
+
+In contrast, Multi-Agent Simulations model the simultaneous interaction of multiple agents such as moisture sensors and dripping units. Multi-Agent Simulation models follow the paradigm of agent-based modelling. Agent-based modelling has the advantage to be able to model an explicit connection between the micro- and the macro level of the phenomenon (w ooLdridGe 2002) \cite{Grashey-Jansen2014}.\\
+
+ooLdridGe 2002). If the goal is to understand how the macro-behaviour of a system (such as irrigation) is composed of the states of single agents (sensors, soil stratum) and how changes at the system level (amount of water) influ ence the behaviour of the individual agent (soil moisture), then an agent-based model is a good choice (G raShey -J anSen and t iMpF 2010) \cite{Grashey-Jansen2014}.\\
+
+
+A MAS is a kind of model composed of an environment with its dynamics, and a set of interacting agents, i.e., autonomous, goal-oriented, acting and perceiving entities. The interactions among the agents and with the environment are able to produce emerging organizations. The environment in MAS is particularly suited to model the biophysical dynamics (here the hydrology) and the agents are able to model the stakeholders’ behaviours as well as their interactions (here the farmers’ individual and collective practices). Such models are considered easier to understand by the stakeholders than a bundle of variables and equations or even than dynamical models (e.g., Purnomo et al. (2009)) \cite{Farolfi2010}.
+
+Uniﬁed Modelling Language (UML) (Booch et al., 1999) is more and more used for such a purpose (see Müller and Bommel (2007) for a detailed introduction to UML for modelling). UML provides a number of diagrams especially for describing a software system. However, we as well as other authors (e.g., Muzy et al., 2005) recognize that UML can be used not only for representing the implementation, but also for the domain knowledge of the scientists \cite{Farolfi2010}.
+In UML, the model structure can be illustrated through a class diagram. A class diagram (Booch et al., 1999) is made of classes linked by associations and taxonomic relations. A class is represented by a three parts box with the name of the class or category (e.g., the categories River, Farmer, etc.), a list of attributes characterizing this concept (e.g., the size, the cash ﬂow, etc.) and a list of operations on the concept (e.g., growing, earning money, etc.)\cite{Farolfi2010}.
+
+In Becu et al. (2003), the class diagram describes the actual implementation using the CORMAS simulation framework (Bousquet et al., 1998) as a set of predeﬁned classes. UML appears to be at the same time too speciﬁc and too general: too speciﬁc because the operations in the object-oriented languages have a well deﬁned operational semantics (i.e., procedure calls) which does not correspond to our intended meaning. For us, the operations are the speciﬁcation of events associated to activities or processes. too general because the attributes can be anything: parameters, state variables, details of implementation, caches, etc. From a conceptual point of view we need the former two distinctions but not the others \cite{Farolfi2010}.
+
+"An autonomous agent is a system situated within and a part of an environment, that senses that environment and acts on it, over time, in pursuit of its own agenda and so as to effect what it senses in the future" [FrGr96]  \cite{Athanasiadis2005}.\\
+
+However, an agent can be characterized by some of the following attributes: temporal continuity, responsiveness, proactiveness, social ability, mobility, veracity, benevolence, rationality, cooperation, character, and adaptiveness [Etsi95, WoJe95] \cite{Athanasiadis2005}.\\
+
+Single AI models provide a solid basis for construction of reliable and real applications, but the interoperability of AI/Numerical models is one of the main open challenges in this field. One of the main open challenges in current research in Intelligent Environmental Decision Support Systems is the interoperation and integration of several AI and Mathematical models within the same system. Usually, this interoperation is done manually, and in an ad hoc model interaction. In addition, there are not many available IEDSS tools, because most of them are just data mining tools, which can produce some models, but not the execution of the models  \cite{S`anchez-Marr`e2014}.\\
+
+Cooperative coevolution (CCEA) has been advocated as a valuable approach for the evolution of heterogeneous multiagent systems. In the classic CCEA architecture, each agent evolves in an isolated population, and the individuals are evaluated by forming collaborations with individuals from the other populations. The key advantage of CCEAs is that since populations are isolated, it is possible for different populations to evolve radically different agents, with genomes of different lengths, and even to use different evolutionary algorithms  \cite{Gomes2015}.
+
+Most previous works focus on the evolution of controllers for behaviourally heterogeneous, but morphologically homogeneous. The cooperation between morphologically heterogeneous robots can, for instance, augment the capabilities of the group, allowing the achievement of tasks that are beyond the reach of a single type of robot. A key element in the evolution of cooperative behaviours is synchronised learning, populations should exhibit a mutual development of skills, in order to avoid loss of fitness gradients and convergence to mediocre stable states  \cite{Gomes2015}. The incremental evolution and novelty-driven cooperative coevolution are used.
+
+Our research aims at designing a distributed dynamic management system where tasks are assigned to whole constellation of satellites, and their performers can adaptively change depending on emerging events. In this paper we explore the potentiality of multiagent technology and ontology to develop an intelligent space system \cite{skobelev2016using}.
+
+It is suggested to use multi-agent approach, that is actively developing in recent years at the junction of parallel systems, distributed problem solving, artificial intelligence and telecommunications works, for dynamic tasks distribution implementation between spacecrafts  \cite{skobelev2016using}.
+
+The collaborative crop simulation framework and its collaboration mechanism will offer a new way for crop information sharing, software sharing, collaborative working and group decision making in distributed environments \cite{Ye-ping2011}. \\
+
+Featuring intelligence and collaborative work, Agent and MAS (Multi-Agent Systems) can solve complicated problems, and the theoretical and technical research on them is a hot research direction in the field of distributed artificial intelligence (DAI)  \cite{Ye-ping2011}. Each agent is composed of a sensor – senses the information of external environment, behaviors – exert influences on the external environment, communication components – exchange information with other agents, and attribute – functions, so it has an ability of learning, evolution, coordination and planning.
+
+At the same time, the rapid development and popularization of Internet technology require high-efficiency resource cooperation on the Internet platforms. Therefore, the introduction of agent technology and method to crop simulation and production management decision will inject a new life to the application of crop simulation technology \cite{Ye-ping2011}. \\
+
+The collaborative model of crop growth, development and yield formation based on the physiological ecological process and the intelligent cooperative research on the crop production based on the network and agent technology will greatly improve the applicability of existing models and software sharing.
+Crop simulation models, such as crop growth simulations of wheat, corn and rice, have some shared functional components, e.g. climate and soil data in data resources, soil water and nitrogen migrations during the simulation, inference and competition strategies during the decision making, etc  \cite{Ye-ping2011}. \\
+
+Corp simulation function: simulation of the relationship between different crops and environment, growth simulation of different crops, simulation of soil water balance, simulation of soil nitrogen, simulation of the relationship between crop and management measures, simulation of disease occurrence and development, simulation of insect pest occurrence and development, etc  \cite{Ye-ping2011}. \\
+
+Management decision making: design and comments of model-based planting plan, inference and decision based on expert knowledge, statistical and predictive analysis, competitive decision of cooperation network \cite{Ye-ping2011}. \\
+
+Role is a combination of certain responsibilities, functions and behaviors in the system and is responsible for one or more specific targets in the system. A group of agents have distinguishable nature, interfaces and behaviors through the role of agent  \cite{Ye-ping2011}. \\
+
+In the MAS, system objectives are undertaken by various role agents. Taking role as a base unit for modeling reflects the goal-driven idea during system modeling, and role plays a very important role from analysis to the whole development process  \cite{Ye-ping2011}. \\
+
+
+Cooperative Control of UAV Based on Multi-Agent System \cite{han2013}.
+
+In the MAS-based collaborative decision system of crop production management, the external participants of the system include user, expert and administrator. Two major types of agents participate in the realization of system functions. The first type is resource agent, including data management agent and knowledge management agent; and the second type is decision-making support agent, including knowledge model agent, agent of growth simulation model, agent of management and control \cite{Ye-ping2011}. \\
+
+we use Multi-Agent system to represent the life of a whole greenhouse system (the plants, the insects, the human requirements, the physical structure, etc.) and thus be able to apply Integrated Pest Management or even Integrated Crop Management. We need to have live digital insects to estimate risk of an infection and take pro-active actions to defeat the real counterpart  \cite{Li}.\\
+
+All the actors involved in the irrigation sector, from farmers to equipment manufacturers, share the social and political pressure to make sustainable use of resources \cite{Li}.\\
+
+In MAS, agents interact and exchange information in a decentralised and somewhat ‘social’ manner instead, which explains why the term ‘Distributed Artiﬁcial Intelligence’ was coined \cite{Berger2001}.\\
+
+A multi-agents system for the simulation of prototypes for different agriculture robots that can be employed in the harvesting of a vineyard  \cite{Arguenon2006}. \\
+
+The three types of robots move in a vineyard between static components such as the grapes processing center and the row of vines. In order to test the system’s reactivity, we added some moving objects such as humans, animals, etc. The assumptions made are as follows. A vine area is considered as a reactive agent. The multi-agent system has been developed by using the ORIS platform [8]  \cite{Arguenon2006}. \\
+
+lies the real merit of MAS, since it facilitates the solving of autonomous programming problems while exchanging variables between them \cite{Berger2001}.\\
+
+The hypothesis is the following, agents (farmers) acting in space, interfere and interact in spatial scales corrupting their entities (arable land) and thus their income \cite{Roth2009}.\\
+
+Negotiation is the communication process of an agent group in order to reach a mutually accepted agreement on some matter. The AML language allows also the modeling of the roles and the attribution of roles and the definition of the behavioral aspect which allows the description of the interactions between agents and the individual behavior \cite{Belaqziz2011}.\\
+
+Multiple UAV Cooperation is a new research direction in modern war, due to the development of UAV, the advanced intelligent system with comprehensive abilities of the realtime monitoring and precise attack has been established on the UAV which gradually make UAV possible to accomplish tasks independently \cite{Han2013}.\\
+
+Multi-agent technologies application for adaptive planning of communication sessions establishment requests with nanosatellites in the ground stations network in response to the arising events, considering constraints, is considered. Mathematical problem statement of adaptive communication sessions scheduling is given \cite{Belokonov2015}.
+
+Estimation and filtering, intervention by external means, and interactive control.
+
+There has been a tremendous research interest in multiagent systems in the control field since the last decade. Multi-agent control systems are spatially distributed systems consisting of a number of interacting agents in which sensing, communication, and control are carried out locally in a distributed fashion. These networked multi-agent systems may have many advantages compared to single agent (centralized) systems, including improved flexibility and reliability, and cost efficiency \cite{jiang2013estimation}.
+As is well understood, the distributed nature of networked systems and their need to adapt to varying conditions, however, also pose great challenges to the mature approaches and theories in the literature, in particular in terms of emergence and scalability. For networked mobile systems, it is clear that emergent behavior is a very promising direction, given that the capability of a single agent is quite limited so far. However, this leads also to the challenging issue of how to prevent undesired emergent behaviors from undermining the reliability of the system\cite{jiang2013estimation}.
+
+Furthermore, when the size of the group is large, how to use leaders to influence and modify the statistical properties of the group as time evolves, remains an open issue despite some recent study [8] \cite{jiang2013estimation}.
+
+
+Sensor networks are multi-agent systems that consist of a large number of inexpensive wireless devices densely distributed over the region of interest. Sensor network technology can be potentially applied in many areas including manufacturing, agriculture, construction, transportation and so on.
+Target tracking problem is a very important research topic in multi-sensor monitoring and has attracted the attention of many researchers in robotic systems and control theory till today \cite{jiang2013estimation}.
+
+There are two critical issues, the designs of deployment strategies and tracking filters, in target tracking for sensor networks. Intervention of multi-agent systems by external means such as leaders is a relatively new topic, and the current study mainly focuses on the conceptual framework, experiments and computer simulations. Another motivation came from the desire to understand and intervene crowd behavior during an emergency, which has become increasingly important in the study of multi-agent social systems. Various pedestrian models such as social force model have been proposed to gain insight into the crowd dynamics, in particular when in panic \cite{jiang2013estimation}.
+
+How we in general control multi-agent systems based on local information only such that the overall system exhibits the desired collective behavior is a fundamental and challenging problem. Design of such control for multiagent systems has been focusing on distributed control, that is, design of local rules for agents such that the system self-organizes to the desired behavior through interaction. Multi-agent systems with mutual interaction between agents state and networks topology are called multi-agent systems with state-topology coevolution. In the field of complex network, such kinds of systems are also known as coevolutionary or adaptive network \cite{jiang2013estimation}.
+
+Distributed computation and decentralized feedback are two distinct characteristics of networked systems control. Multi-agent system is an important kind of networked systems, where agents are interconnected over an undirected or directed network topology and coordinated through a decentralized feedback control law. The consensus control of multi-agent systems has to be designed with only partial, disturbed or noisy measurements. One is distributed estimation via observers design for multi-agent coordination, and the other is distributed output regulation based consensus control. For multi-agent systems with an exogenous disturbance system, distributed output regulation based consensus control have been studied in recent years \cite{jiang2013estimation}.
+
+As another important kind of networked systems, sensor networks have broad applications in surveillance and monitoring of an environment, collaborative processing of information, and gathering scientiﬁc data from spatially distributed sources for environmental modeling and protection. A fundamental problem in sensor networks is to solve detection and estimation problems, for example, target localization and tracking. As we know, the research on multi-agent systems can be classified into three categories: 1) Analysis: Given the local rule of the agents, what is the collective behavior of the system? 2) Distributed control: Given the desired collective behavior, how do we design the rules of the agents such that the system exhibit the desired behavior? 3) Intervention: Given the desired behavior, how do we control or intervene in the system without destroying the local rule of the system? \cite{jiang2013estimation}.
+
+In distributed control, each agent can be regarded as a control system, and the control law of each agent can be designed based on local information. In pinning control, we need to design the local feedback control law of some (not all) agents selected with some special properties. In fact, the pinning control can be regarded as a special case of distributed control. However, for intervention of MAS, one of the key points is that the local interaction between agents cannot be changed. In this section, we will introduce two kinds of intervention methods: soft control and adding “information” agents \cite{jiang2013estimation}.
+Soft control, put forward by Han et al. [7] , is a novel method to intervene in the collective behavior of MAS. The central idea of soft control is to add one (or some) special agent(s) (called shill) into the original systems to guide the system to the desired behavior, but without changing the local rules of the existing agents. The special agent(s) can be controlled or designed by us, and cannot be identified by the existing agents. The existing agents take them as ordinary agents, so the shill agent(s) will not destroy the local rules of the ordinary agents, but can affect the behavior of other agents in its neighborhood. The property of local interactions between agents makes the influence of the shill spread out, so adding shill agent(s) may control the behavior of the whole system\cite{jiang2013estimation}.
+
+
+Inspired by this, some researchers focus on the intervention of MAS by adding leaders.
+Multi-agent systems consist of a number of interacting agents, where the specific pattern of interaction is represented by a network. The interaction among agents can be governed by linear local rules, which is so-called linear multi-agent systems. At present, there is a large amount of literatures considering linear multi-agent systems from first order to second order as well as higher order systems. Refer to [46 − 49] and the references therein, to name a few.
+in reality, the interaction among agents may be nonlinear. Typical examples are the dynamics of complex network. On the other hand, the mutual interaction between agents state and networks topology can also lead to the nonlinearity. In this section, we will review the research progress on multi-agent systems with nonlinear interaction from two aspects: general nonlinear multi-agent systems and those with state-topology co-evolution \cite{jiang2013estimation}.
+
+In real systems, nonlinear intrinsic dynamics or nonlinear interaction among agents are inevitable. Examples are systems of coupled oscillators. On nonlinear multi-agent systems, a pioneering work is [50], in which Moreau considered a general nonlinear discrete system Multi-agent systems with mutual interaction between agents state and networks topology are called multi-agent systems with state-topology coevolution. In the ﬁeld of complex network, such kinds of systems are also known as coevolutionary or adaptive network \cite{jiang2013estimation}.
+
+A number of papers have recently appeared on the modeling of coevolutinary networks, such as coevolution of behavior and structure in Web [59] , inﬂuence of behavior on the spread of diseases [60] , co-emergence of cooperation and hierarchical structure in games [61] , evolution of opinion formation on adaptive network [62] , see [63 − 64] and http://adaptivenetworks.wikidot.com/publications for more references. In this paper, we will focus on the theoretical study on the multi-agent systems with state-topology coevolution \cite{jiang2013estimation}.
+
+In this paper, we have reviewed some new research and development in multi-agent systems from the viewpoint of control theory. Both theoretical results and experiments are reviewed for the following main issues: distributed estimation and cooperative ﬁltering, soft control and informed agent intervention, and nonlinear interaction dynamics, in multi-agent systems. There are some other interesting yet challenging problems not covered in this paper, such as constrained communication, optimal consensus control, competition and cooperation, and so on \cite{jiang2013estimation}.
+
+
+We focus on the problem of designing such a network system in which issues of resource selection and allocation, system behavior and capacity, target behavior and patterns, the environment, and multiple constraints such as the cost must be addressed simultaneously.
+With the advancements in technologies, it is becoming increasingly feasible to conceive and deploy large-scale sensor networks for a wide variety of applications such as elderly assistance, traffic control, homeland security, military surveillance, and environmental monitoring [1].
+We use a modeling approach known as agent-based modeling [29] to study and simulate the high dimensional design space problem at hand. In this approach, systems are represented as collections of autonomous decision-making entities, called agents \cite{Li2013}.
+The benefits of ABM over other modelling techniques can be captured in three statements [30]: 1) ABM captures emergent phenomena; 2) ABM provides a natural description of the complex systems; 3) ABM is flexible \cite{Li2013}.
+The ability of ABM to deal with emergent phenomena is the main driving force behind its success as a complex adaptive system modelling tool. Significant  work  has  gone  into  the  development  of algorithms to perform a variety of tasks including detection, localization,  classification,  identification  and  tracking  of  one  or  more  targets  in the  sensor  field,  and  numerous  approaches  based  on  Collaborative Signal and Information Processing (CSIP) have been proposed in the literature, see, for example [2,3]. In the scenarios involving multiple targets,  data  association  of  measurements  from  multiple  sensors  is known to be NP-hard. Multiple hypothesis tracking (MHT) [4] and Markov  chain  Monte  Carlo  data  association  (MCMCDA)  [5]  are 
+possible solutions to this tough problem at the cost of long latency and extensive computation \cite{Li2013}.
+
+Simulating forest plantation co-management with a multi-agent system. Multi-agent simulations and explore scenarios of collaboration for plantations. Multi-agent simulation is a branch of artiﬁcial intelligence that offers a promising approach to dealing with multi-stakeholder management systems, such as common pool resources \cite{Purnomo2006}.
+
+Use of intelligent spray to controlling pests using the fuzzy logic and multiagent systems. Multi-agent systems are systems which consist of independent components and which have the following features: i. Each agent, on its own, does not have the capability to solve the main problems. ii. There is no control over the whole system. iii. The data and information are distributed \cite{Shamshirband2012}.  
+
+In order to improve irrigated automatic degree of irrigated area, and make the control center and telemeter station to intelligent complete the task, structures the control center and telemeter station Agent union by instruct Multi-Agent theory, and make use of GSM network to finish the communication between the control center and telemeter station, at last make up the long-range monitoring system of irrigated area based on Multi-Agent and GSM \cite{Zhao2008}.
+
+Multi-Agent systems is one computing system that one group Agent finishes some tasks or achieve some goals through cooperating, these Agents should cooperate and solve the problem that exceed each individual ability, they independent and distributed to run, and coordination and service each other, the goal and behavior between Agents contradiction and conflict, which is coordinated and solved through the means such as competition or consulting, to finish a task together \cite{Zhao2008}.
+
+Intelligent agents (also known in literature simply as agents) are problem solving software entities, which possess human like intelligent properties such as: autonomy, reasoning, sociability, learning ability, etc [1,2]. Agents differ from objects (as in object oriented programming) in their degree of autonomy. Objects have control over their methods, but they do not exhibit control over their own behavior.  Intelligent agents are autonomous entities capable of exercising choices over their actions and interactions [3]. Agents are often deployed in an environment where they can interact with other agents (through cooperation and negotiation skills) or with the environment, the final goal being to accomplish special tasks that cannot be achieved by conventional software. Such environments are known as multi-agent systems \cite{Nichita2007}.
+
+Multi-agent systems have several features that makes them suitable for the task stated above: speed-up and efficiency (agent can act asynchronous and in parallel, resulting in an overall increased speed-up), robustness and reliability (failure of one component does not make the entire system inoperable), scalability and flexibility (the system can be adapted to an increased problem size by easily adding agents), cost, development (due to computer standardization individual agents can be developed by different specialists) and reusability (possibility of reuse and reconfigure agents in different application scenarios).
+To develop our MAS we used specific techniques and tools \cite{Nichita2007}.
+
+This study applied multi agent simulation to investigate the impact of farm credit (an agricultural land-use change adaptation strategy) on farm household livelihood \cite{Tolk}.
+
+Heterogeneous Multiagent Architecture for Dynamic Triage of Victims in Emergency Scenarios \cite{Mercadal2011}
+
+
+One should understand that although DSS in agriculture is a general topic, there is a big variety of different problems which can be handled by such DSS – e.g. irrigation of a field, effective usage of fertilization, nutrition and feeding of cattle, price risk management of products, pesticide dosing etc. Each of these topics requires substantially different kind of expertise and might require also different approach and different tools to be used. However, success of a DSS for farmers is not necessarily given by the tools use \cite{KOvZIvSEK}.
+
+Yeping et al [8] on the other hand suggests in his study usage of agent based decision system which is based on artificial intelligence research. He describes agents as a computer process which is able to adapt to the changing environment. He suggests to design DSS as a multi agent system, where each agent will have a different role (data management agent, model agent, interface agent, forecast agent etc.), but where the agents will collaborate with each other.
+Keating et al [10] describe in their research an approach used to develop their system APSIM \cite{KOvZIvSEK}.
+
+Multi-Agent Simulation (MAS) models are intended to capture emergent properties of complex systems that are not amenable to equilibrium analysis. They are beginning to see some use for analysing agricultural systems. The paper reports on work in progress to create a MAS for specific sectors in New Zealand agriculture. One part of the paper focuses on options for modelling land and other resources such as water, labour and capital in this model, as well as markets for exchanging resources and commodities. A second part considers options for modelling agent heterogeneity, especially risk preferences of farmers, and the impacts on decisionmaking. The final section outlines the MAS that the authors will be constructing over the next few years and the types of research questions that the model will help investigate \cite{kaye2009review}.
+
+
+\subsection{Methodologies}
+\subsection{FrameWorks}
+\section{Applications}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{WATER MANAGEMENT MODELS}
+
+Some solutions to the irrigation control problem use a combination of feed-forward, feedback and mathematical models, considering relevant variables in every part of the soil, plant and atmosphere relations \cite{Romero2012}. Exist mathematical models to test automatic irrigation controllers in computer simulations prior to their use in field experiments. On the other hand exist agent based models for simulation and control of complex systems. In the following lines we expose a review of these models.
+
+\textbf{DSSAT- Decision Support System for Agrotechnology Transfer} \cite{hoogenboom2004decision}, \cite{Huang2016}. Is a software application program that comprises crop simulation models for over 42 crops. For DSSAT to be functional it is supported by data base management programs for soil, weather, and crop management and experimental data, and by utilities and application programs. The crop simulation models simulate growth, development and yield as a function of the soil-plant-atmosphere dynamics. DSSAT and its crop simulation models have been used for many applications ranging from on-farm and precision management to regional assessments of the impact of climate variability and climate change. For applications, DSSAT combines crop, soil, and weather data bases with crop models and application programs to simulate multi-year outcomes of crop management strategies. DSSAT integrates the effects of soil, crop phenotype, weather and management options.
+
+\textbf{CROPGRO} \cite{boote1998simulation} Was developed to simulate growth, development and yield of a common bean crop. It considers the main physical and physiological processes of plants, such as photosynthesis, respiration, biomass accumulation and partition, phenology, soil water extraction, evapotranspiration and common bean
+growth and leaf area development as functions of daily climatological elements (rainfall, solar radiation, maximum and minimum temperature), for the specific conditions of soil. Water storage in the soil and its capacity to supply the plant roots are predicted based on the processes of superficial runoff, water percolation and redistribution in the profile. The model is sensitive to the characteristics of each cultivation, sowing dates, crop spacing and irrigation management options.
+
+\textbf{WAVE - Water and Agrochemicals in the soil, crop and Vadose Environment} \cite{vanclooster1994wave} The mathematical model describes the transport and transformations of matter and energy in the soil, crop and vadose environment.  The model is deterministic, by which is meant that one set of input data always yields the same model output values. The mode is numerical, since finite difference techniques were used for the solution of the differential equations describing matter and energy transport in the soil-crop continuum, is holistic and one-dimensional. 
+
+\textbf{SPASMO - Soil Plant Atmosphere System} \cite{green2002pesticide} Is a solute transport model developed by HortResearch, New Zealand. The SPASMO computer model considers water, solute (e.g. nitrogen and phosphorus), and microbial (e.g. viruses and bacteria) transport through a 1-dimensional soil profile. The soil water balance is calculated by considering the inputs (rainfall and irrigation) and losses (plant uptake, evaporation, runoff and drainage) of water from the soil profile. The model includes components to predict the carbon, nitrogen and phosphorus budget of the soil. These components allow for a calculation of plant growth and uptake of both N and P, various exchange and transformation processes that occur in the soil and aerial environment.
+
+\textbf{WOFOST (World Food Studies)} \cite{diepen1989wofost}
+ Is a simulation model for the quantitative analysis of the growth and production of annual field crops. It is a mechanistic model that explains crop growth on the basis of the underlying processes, such as photosynthesis, respiration and how these processes are influenced by environmental conditions. WOFOST is implemented in the Crop Growth Monitoring System which is used operationally to monitor arable crops in Europe and to make crop yield forecasts for the current growing season.
+
+\textbf{MACRO} \cite{larsbo2003macro}. Is a one-dimensional model that considers non-steady state fluxes of water, heat and solute for a variably-saturated layered soil profile. MACRO is a dual-permeability model, whereby the total soil porosity is partitioned into two separate flow regions (micropores and macropores), each characterized by a degree of saturation, conductivity, water flow rate, solute concentration, and solute flux density. A full water  balance is simulated, including treatments of precipitation (rainfall, irrigation and snow), evapotranspiration and root water uptake, deep seepage and horizontal fluxes to tile drains. 
+
+\textbf{GIM - Global Irrigation model \cite{doll2002global}}. Using this model compute how long-term average irrigation requirements might change under the climatic conditions of the 2020s and the 2070s, as provided by two climate models, and relate these changes to the variations in irrigation requirements caused by long-term and inter annual climate variability in the 20th century. The model computes net and gross irrigation water requirements in all 0.5° by 0.5° raster cells with irrigated areas. "Gross irrigation requirement" is the total amount of water that must be applied by irrigation such that evapotranspiration may occur at the potential rate and optimal crop productivity may be achieved \cite{doll2002impact}.\\
+
+\textbf{AdaptPumpa \cite{Perez2016}} is an agent based model that captures the essential features of the Pumpa irrigation system in Nepal to study the performance  under different projections of climate change in the region. In the simulations include social dynamics simulated (farmers’ decisions) and social-ecological interactions come from the farmers’ decisions based on the availability of the resource. AdaptPumpa adds to \cite{cifdaloz2010robustness} model (differential equations) five features: i) agents’ capacity to make decisions and adapt their irrigation strategy to the external conditions of water availability, ii) a greater range of climate change scenarios, iii) resource uncertainty, iv) farmers’ coordination challenges under climate change, and v) the interlinked effects of the temporal shift, water discharge change and water distribution scenarios irrigation in Nepal, http://www.openabm.org/model/3580/version/1. AdaptPumpa uses ODD (overview, design concepts, and details) protocol  for describing individual and agent based models.\\ 
+
+\textbf{A comprehensive model \cite{Guyennon2016}} was developed for define distributed crop water requirements with surface and groundwater mass balance. The proposed modeling scheme combine hydrological, hydro-geological and management components, which control the conjunctive exploitation of surface and groundwater resources in intensively irrigated areas. It is composed by four modules that simulate at monthly scale: a) the inflow to the surface reservoir (SPI-Q regression model); b) the distributed soil water balance GMAT (Monthly Soil water balance); c) the reservoir water balance; and d) the ground- water balance.\\
+
+\textbf{BewUe (Bew\"aässerung Uelzen. Irrigation Uelzen} \cite{riediger2016modelling}. By linking soil water holding capacities, crop management data and calculations of evapotranspiration and precipitation from the climate change scenario RCP 8.5 irrigation requirements for maintaining crop productivity were estimated for the years 1991 to 2070. To assess the difference between evapotranspiration of grassland and the particular crop species, a comparison with a WASMOD (Water and Substance Simulation Model) simulation output for the particular crop species and grassland was conducted. The results show, that regional implications of global climate change will likely affect evapotranspiration as an important aspect in crop cultivation and as the most important influence for irrigation requirement.\\ 
+
+\textbf{SWAP (Soil - Water - Atmosphere - Plant system)} \cite{de2017adaptability}. A mechanistic model of the water flow in the Soil-Water-Atmosphere-Plant system  was used to describe the soil hydrological conditions in response to climate and irrigation. The SWAP model applies daily crop potential evapotranspiration ($ET_p$ ), daily precipitation and irrigation to prescribe the upper boundary condition. $ET_p$ is calculated from reference evapotranspiration ($ET_o$) and a crop factor. Reference evapotranspiration ($ET_o$ ) was estimated, for the reference and future climate case, from daily time series of air temperature by means of the Hargreaves and Samani method \cite{hargreaves1985reference}. The HS model is a simplified method which requires solely air temperature data. Crop water use was simulated by the “simple crop module” option in SWAP which prescribes crop development. Numerical experiments were performed for an exemplary tomato cultivar and defined by a temporal profile of leaf area index (LAI), rooting depth and crop factor. Several experimental and literature data sets were examined in order to describe the phenology of the exemplary cultivar. In the study they simulated five different irrigation strategies given optimal irrigation water depths, timed and calculated on the basis of soil water deficit in the root zone.
+
+\textbf{AEZ (Agro-ecological Zoning)} \cite{fischer2007climate} The AEZ model uses detailed agronomic-based procedures to simulate land resources availability and use, farm-level management options, and crop production potentials as a function of climate, soil, and terrain conditions. At the same time, it employs detailed spatial biophysical and socio-economic datasets to distribute its computations at fine-grid intervals over the entire globe.  The simulation results shows first, globally the impacts of climate change on increasing irrigation water requirements could be nearly as large as the changes projected from socio-economic development in this century. For this work, AEZ was used to compute water movement through the soil – plant – atmosphere continuum, to assess net crop irrigation water requirements (WRQ). The WRQ is defined herein as the amount of water – in addition to available soil moisture from precipitation – that crop plants on irrigated land must receive to grow without water stress. 
+
+
+\textbf{MAPIS – Multi-agent  precision  irrigation simulation} \cite{Grashey-Jansen2014} Presents possibilities of optimizing irrigation on the basis of two simulation approaches. In the first simulation approach a multi-agent-based tool calculates soil specific and corresponding water tensions by using pedotransfer functions. This makes possible a quantification of the need for irrigation and the control of the irrigation system. By integrating the physical concept of soil water potentials, temporal and spatial soil water fluxes are used to schedule dynamic and precision trickle-irrigation. The second simulation approach calculates a field-irrigation with simultaneous consideration of the horizontal variability of soil properties. The irrigation is carried out in a site-specific way with high precision. Both approaches show that precision and soil specific irrigation is accompanied by a significant reduction of irrigation water and an improvement of irrigation efficiency. Finally, the model calculates an irrigation plan to ensure a water application which is efficient and meets the demands. Thus the irrigation does not happen intermittently but in a continuous and dynamic way. This means that the amount of the water applied during the irrigation process is subject to controlled dynamic fluctuations.
+
+
+\textbf{Adaptive scheduling in deficit irrigation} \cite{holloway2008adaptive} A simple and practical real-time control system is proposed  using  a  model-data  fusion  approach,  which  integrates  information  from  soil  water representation models and heterogeneous sensor data sources.  The system  uses real-time soil moisture measurements provided by an in situ sensor network to generate site-specific soil water retention curves. This information is then used  to predict the rate of soil drying. The decision to irrigate is made when soil water  content drops below a predefined threshold and when the probability of rainfall  is low. A deficit strategy can be incorporated by lowering the irrigation “refill” point  and  setting  the  fill  amount  to  a  proportion  of  field  capacity.  Computer  simulations  show  how  significant  water  savings  can  be  achieved  through improved  utilization  of  rainfall  water  by  plants,  spatially  targeted  irrigation  application, and precision timing through adaptive control.  
+
+\textbf{AMEIM - Agent-based  Middleware  for  Environmental  Information Management} \cite{Athanasiadis2005} Is an  multi-agent application to manage environmental data for better accessibility as users. AMEIM uses four generic agent types: Contribution Agents, Data Management Agents, Distribution Agents and the Graphical User Interface Agent, which interacts with the platform administrator and orchestrates the platform agents. Direct users are the environmental scientists, the platform administrators and the computer scientists/developers. Indirect users include the government, the industry and the public. The designed MAS is able to capture data from several external sources and to validate the incoming data.
+
+
+\textbf{Multi-agent,  Machine  Learning for Soil Textural Composition} \cite{Smith2009} Is an approach to automating  soil texture classification from in situ sensors in the  field. This approach exploits the features of a soil water  retention model using machine learning algorithms. Knowledge  of the soil textures is then used to learn the composition of the field and its soil horizons. They discuss the role of  soil texture classification within their multi-agent  irrigation control system and then conduct a preliminary experiment with soil water retention data from the UNSODA database. The system is  evaluated  with respect to  six classifiers. A maximum classification rate of 85.11\% was achieved with a MLP neural network, although performance was relatively consistent across all classifiers. A multiagent platform has been proposed to control deficit irrigation using a wireless sensor network Within our proposed multiagent framework, the field was represented by three dimensional soil cube agents, each associated with a soil moisture potential sensor. Plant agents are also used to represent the water demand of crops by exploiting measurements of ET, crop stress status and the crop wilting point. 
+
+
+\textbf{IEDSS - Interoperable Intelligent Environmental Decision Support Systems } \cite{S`anchez-Marr`e2014}. The framework is based upon the cognitive-oriented approach for the development of IEDSS, where three kind of tasks must be built: analysis tasks, synthesis tasks and prognosis tasks. Now, a fourth level will be proposed: the model construction layer, which is normally an off-line task. At each level, interoperability should  be  possible  and  inter-level interoperability  must  be  also  achieved.  This  interoperability  is proposed  to  be  obtained  using  data  interchange  protocols  like  Predictive  Model  Markup  Language (PMML), which is a model interchange protocol based on XML language, using an ontology of data and AI models to characterize data types and AI models and to set-up a common terminology, and using workflows  of  the  whole  interoperation  scheme.  In  the  future,  a  Multi-Agent  System  will  be  used to implement the software components. An example of use of the proposed methodology applied to the supervision of a Wastewater Treatment Plant is provided. This Interoperable IEDSS framework will be the first step to an actual interoperability of AI models which will make IEDSS more reliable and accurate to solve complex environmental problems.
+
+
+\textbf{SHADOC} \cite{Barreteau2000}, \cite{barreteau2004suitability} Development of a multi-agent system model, a kind of virtual irrigated system, with a special focus on rules in use for access to credit, water allocation and cropping season assessment as well as organization and coordination of farmers.  In Senegal River Valley, water first pumped in the river and then running by gravity, different actors acting on the environment. These actors, individuals or groups, are interconnected through membership and service relations. They are also, at their own level, in relation with other actors outside the system. This network of relations at different levels inside and across the boundary is the sign of a complex structure. This is hence a simulator of irrigated systems which specifically tackles the organization and coordination of farmers in a varying framework of collective rules. Neither individually based nor collectively constrained, both organization levels coexist and “co-evolve”. It is a good basis to explore different scenarios of individual behaviors and collective rules, thus allowing “learning by simulating” rather than “learning by doing” which has been over-practiced in the field of irrigation development. This model constitutes a virtual irrigated system which can already be used as a tool to test hypotheses of social organizations and institutions. This is still a theoretical simulator somewhat specific to the Senegal River Valley even though it has been designed to be able to deal with other contexts. 
+
+\textbf{DSS-FS: A Decision Support System - Fertigation Simulator}\cite{Barradas2012} Irrigation combined with fertigation has produced unquestionable results for the last few decades. It is a rather complicated process as many factors must be controlled in order to produce good and environmentally safe fertigation practices. The efficiency and uniformity of irrigation, as well as the balance of the nutritive solution used to irrigate are highly ruled by the complex and diverse information (weather, soil, water, and crop data). The DSS-FS system is intended to support design and optimization of irrigation and fertigation systems while increasing their environmental sustainability. The data set to be processed is stored in the DSS database and can be continuously updated according to new development results. Afterwards, the user might handle the input data through a basic and user-friendly interface while allowing the DSS-FS to retrieve default scenarios and thereby reducing the systems user’s need for advanced knowledge. An advanced mode of DSS-FS, which adds an increased level of precision in exchange for human support, includes soil sample analysis and other relevant information. The DSS-FS consists of three main modules available to the user: Irrimanager, Irrisystem and Fertigation.
+
+
+\textbf{MAS-CA  multi-agent/cellular automata approach} \cite{Berger2001} MAS-CA is a spatial multi-agent programming model, which has been developed for assessing policy options in the diffusion of innovations and resource use changes. Unlike conventional simulation tools used in agricultural economics, the model class described here applies a multi-agent/cellular automata (CA) approach by using heterogeneous farm-household models and capturing their social and spatial interactions explicitly. The individual choice of the farm-household among available production, consumption, investment and marketing alternatives is represented in recursive linear programming models. Adoption constraints are introduced in form of network-threshold values that reflect the cumulative effects of experience and observation of experience of peers. The economic model and hydrologic components are tightly connected into a spatial framework. The integration of economic and hydrologic processes facilitates the consideration of feedback effects in the use of water for irrigation. The simulation runs of the model are carried out with an empirical data set, which has been derived from various data sources on an agricultural region in Chile. Simulation results show that agent-based spatial modeling constitutes a powerful approach to better understanding processes of innovation and resource use change.
+
+\textbf{MUSA - Multiagent Simulation for consequential LCA of Agrosystems} \cite{Rege2015} Is a ABM for simulation of incentives for maize to produce biofuels in Luxembourg with an aim to conduct life cycle assessment of the additional maize and the consequent displacement of other crops in Luxembourg. On the supply side they have farmers who are willing to sell their produce based on their actual incurred costs and an expected markup over costs. On the demand side, they have buyers or middlemen who are responsible for quoting prices and buying the output based on their expectation of the market price and quantity. They have N buyers who participate in the market over R rounds. Each buyer has a correct expectation of the total number of buyers in each market. At each round, the farmers are sorted by descending order of price quotes and the highest bidder gets buying priority. At the end of each round, the clearance prices are visible to all agents and the agents have an option of modifying their bids in the forthcoming rounds.
+
+
+\textbf{FIRMA - Freshwater Integrated Resource Management with Agents} \cite{Moss2000} Prototype  model integrating  representations  of  both  natural  and  social  systems  and  developed  in collaboration  with  stakeholders. The  model  integrates  a  hydrological  model 
+parameterized  to  represent  the  effects  of  precipitation  and  temperature  on  water availability in the Thames region of southern England (including Oxford, London and the Southeast) with a model of demand for water by households. This model integrate assessment and social simulation communities and it was developed as a key step in the demonstration of a new methodological approach.  This approach rests on stakeholder participation in the model design and validation stages together with a compositional validation procedure.  The participation of stakeholders is essential because the role of models in this methodological approach is to explicate and articulate presumptions of decision-makers in their formulation of expectations of the outcomes of their decisions.    
+
+
+\textbf{ABM - GIM. Agent based modeling for the gravity irrigation management} \cite{Belaqziz2011}, \cite{Belaqziz2013}. Use agent technology in the field of gravity  irrigation  systems because  the  complexity  to  manage  in  real-time  the  water  distribution  operations  those  arrive asynchronously  and  dynamically  and  to  be  reactive  and  adaptive  to  the  dynamic  and  unpredictable  events  that characterizes  the  field  (mainly  rainy  advents).  An important aim is the irrigations  scheduling  optimization  using  an  evolutionary  algorithm. Currently, the gravity irrigation systems networks have several limits and cause water loss. An efficient management of these irrigation systems is mainly characterized by a better water resources allocation among the various actors which therefore becomes necessary. However, this allocation is subject to several constraints: the fixed water resources, the crop, sewing, soil, climate data, and real needs of water. Uses (MSGIN) using multi-agent framework, particularly specialized agents by deploying the cooperation techniques, negotiation and planning, in order to allow the system managing and satisfying the requests for each culture and to react in real-time to the unpredictable events which can occur during the achievement of these requests.  
+
+
+\textbf{MAS - Garden Irrigation} \cite{Isern2012} knowledge-based and distributed framework that simulates the behavior of an irrigation system and permits accurate determination of irrigation timing. Several agents, which represent the actors involved in this problem, coordinate their activities in order to evaluate different irrigation strategies. A common ontology shares the knowledge required in the agent-based framework, which can be tuned according to the particular circumstances of the field. The usefulness of the developed system is demonstrated in three case studies, in which the simulations performed by the system provide the answer to different questions (length of irrigation time, comparison of a fixed and a dynamic irrigation policy, and most efficient configuration of a garden). The system simulates the behavior of the irrigation system for the possible solutions and finds the most efficient one in terms of water consumption.
+
+\textbf{RMAS - Robot multi-agents system} \cite{pentjuss2011improving} This paper is monographic review of precision agriculture methods application with main direction of possible usage of multiagent systems.  Multiagent  systems  usage  in  precision  agriculture  field  offers  many opportunities: it can decrease machinery weight and dimensions, can increase one type machinery count on the field etc. When multiagents are used it is possible to redistribute whole big agricultural task into smaller parts for it  faster  completion,  upgrade  precision  agriculture  machinery  function  from  automatic  to  autonomous  job performance. One main function of multiagent system is to monitor all agricultural fields by using subfield areas, where farmer can identify specific parameters of each area and implement management practices according to the  area  needs.  These  many agent systems are viewed like multirobot system with own decision making, real time planning and autonomous work performance. Additional feature is that each unit is independent, but it is collaborating with other units on the field to reach the total aim of the task. collaboration among units can be reached without human assistance. 
+
+
+\textbf{ABSTRACT - Agent Based Simulation Tool for Resource Allocation in a Catchment} \cite{Oel2010}, \cite{Oel2012}. A multiagent simulation (MAS) approach is developed for representing the processes responsible for the distribution of water availability over space and time to spatial planning in a semi-arid river basin. A MAS model has been developed to represent local water use of farmers that both respond to and modify the spatial and temporal distribution of water resources in a river basin. The MAS approach is tested for the Jaguaribe basin in semi-arid Northeast Brazil. Model validity and required data for representing system dynamics are discussed. For the Jaguaribe basin both positive and negative correlations between water availability and water use have been encountered. It was found that increasing wet season water use in times of drought amplify water stress in the following dry season. 
+
+\textbf{MAS - Water Pollution Monitoring Systems}\cite{Oprea2006}.  Design of a multi-agent system for water quality monitoring and control.  The  MAS  paradigm solution has been found to be appropriate for this problem. The MAS architecture and methodology has been briefly described. The  model  is  being  developed and  applied  in  a  collaborative  research  and learning  framework,  which  includes  local  water user  organizations,  state  and  local  agencies,  as well as research organizations. This system can be easily adapted to a different type  of application or in conjunction with it, for example  that  of  monitoring  of  water  supply infrastructure system. In this case the parameters being monitored could include, lead concentration in water (or other chemical component of the pipe system  being  used),  pressure,  temperature,  other dynamic parameters. The check monitoring at the tap  compared  to  the  monitoring  at  the  source would  produce  data  concerning  the  state  of  the water distribution lines and the eventual need for maintenance or upgrade of the water distribution system. 
+
+\textbf{KatAWARE}\cite{Farolfi2010}. Multi-Agent system (MAS) developed and used following a participatory action research approach called Companion Modeling (ComMod). Participation in the decision-making process by all involved stakeholders is a crucial principle of Integrated Water Resource Management (IWRM). This methodology is composed of four steps: (1) the specification of the structure of the system, its dynamics and the indicators one wants to monitor, (2) the description of the initial state of the simulation, (3) the implementation of the model which can take the form of a computer program or of a role-playing game, (4) the reflection step to criticize the model and to propose further improvements. For the first two steps, they use a representation based on the Unified Modeling Language. An integral part of the participatory process was the development of a negotiation-support tool to enable the local water management institution, i.e., the Kat River Water User Association (KRWUA), to discuss future scenarios related to possible water allocations among the different sectors in the catchment, and the consequences of these scenarios in terms of economic, social and environmental outcomes.
+
+\textbf{ABM - Water Quality Control} \cite{Nichita2007}. Describes  an  early stage  of  development  of  a  multi  agent  system  for  water  pollution  monitoring and  control.  The  multi-agent  system  can  be  used  for  real-time  monitoring  of water quality for regulatory compliance with national and European legislation regarding  national  drinking  water  quality.  This  is  a  first  step  in  the implementation of a multi-agent system which takes itself decisions, not only provides advice to human decision-makers. 
+
+\textbf{NED-2} \cite{Nute2004}. NED-2 is a robust, intelligent, goal - driven decision support system that integrates tools in each of these categories. NED-2 uses a blackboard architecture and a set of semi-autonomous agents to manage these tools for the user. The blackboard integrates a Microsoft Access database and Prolog clauses, and the agents are implemented in Prolog. A graphical user interface written in Visual C ++ provides powerful inventory analysis tools, dialogs for selecting timber, water, ecological, wildlife, and visual goals, and dialogs for defining treatments and building prescriptive management plans. Users can simulate management plans and perform goal analysis on different views of the management unit, where a view is determined by a management plan and a point in time. Prolog agents use growth and yield models to simulate management plans, perform goal analyses on user-specified views of the management unit, display results of plan simulation using GIS tools, and generate hypertext documents containing the results of such analysis. Individual agents use metaknowledge to set up and run external simulation models, to load rule-based models and perform inference, to set up and execute external GIS and visualization systems, and to generate hypertext reports as needed, relieving the user from performing all these tasks.
+
+\textbf{MAS-CHNs-WEB} \cite{hu2015design}. Watersheds are modeled as coupled human and natural systems (CHNSs) by coupling a multi-agent system (MAS) model and an environmental model. Multithreaded programming is used to improve the computational efficiency. As a result, the total running time of the coupled models is reduced by 80\%, from one hour for a sequential run to twelve minutes with an eight-core desktop machine, running the model in parallel. To make the coupled models publicly accessible, a web-based application of the coupled models is implemented in the Hadoop-based cloud computing environment, which allows users to access and execute the model simultaneously without an increase in latency. This study presents a case of cyberinfrastructure design for complex watershed management problems, especially to parallelize computational models and provide model accessibility with user scalability. 
+
+\textbf{CORMAS-OLYMPE} \cite{bonte2005coupling}. Coupled between farming  system modelling  software  (OLYMPE) and agent-based simulation platform (CORMAS) to better  characterize  and  analyse  farming  systems identified  as  major  centres  of  decision  in  agriculture. CORMAS enables representation of  complex  situations  and  takes  into  account interactions  between  different  stakeholders.  They describe the development process and they illustrate how the new platform can  be  used  with  a  simple  example  developed  for educational  purposes. This model is used as a tool to support decision making
+processes  and  communication  and provides an economic  synopsis of  the  complexity of  farming systems.
+
+\textbf{CARISMA} \cite{Oviedo2014}. The combination of certain technologies, leads to the integration of inference engines in the MultiAgent System. This combination is intended to provide the agents with the individual and collective intelligence necessary to resolve problems common to the entire system. The system has been developed within the so-called cARISMA Project: MultiAgent System for Remote Control of Solar Photovoltaic Power Plants. The objective is to control and monitor solar panel farms: in an automated way whenever possible and, the cases when it is not possible, to provide human telecontrol operators with control recommendations. To this end, small hardware devices are distributed with associated sensors and actuators in various areas of a solar farm in order to do this. This MultiAgent System employs the set of devices in order either to make decisions of automated control or to send recommendations to technicians of the solar plant based on the data and knowledge available.
+
+\textbf{DSS-PICO} \cite{perini2004developing}. DSS to be used by technicians of the advisory service performing pest management according to an integrated production approach. Designing this type of system requires analyzing two main dimensions of complexity basically: the organizational dimension dealing with all the dependencies between the domain stakeholders, and the technical dimension concerning the study of natural plant protection techniques. The methodology, called Tropos, plays a central role in early requirement analysis and allows deriving a system’s functional and non-functional requirements from a deep understanding of the domain stakeholders’ goals and of their dependencies. The architecture includes a set of software components (agents) that wrap existing information systems and interact with agents by providing.
+
+
+\textbf{DAWN} \cite{athanasiadis2005hybrid}. To support policy makers in their decisions, the authors have developed DAWN, a hybrid
+model for evaluating water-pricing policies. DAWN integrates an agent-based social model for the consumer with conventional econometric models and simulates the residential water demand-supply chain, enabling the evaluation of different scenarios for policy making. An agent community is assigned to behave as water consumers, while econometric and social models are incorporated into them for estimating water consumption. DAWN’s main advantage is that it supports social interaction between consumers, through an influence diffusion mechanism, implemented via inter-agent communication. Parameters affecting water consumption and associated with consumers’ social behavior can be simulated with DAWN. Real-world results of DAWN’s application for the evaluation of five water pricing policies in Thessaloniki, Greece.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%   BEGIN TABLE   %%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\onecolumn
+\begin{table}[h]
+\caption{Summary of Review system}
+\label{table_summary}
+\begin{center}
+\begin{tabular}{@{\hspace{0cm}}|p{2cm}|     @{\hspace{0cm}}|p{2cm}|   @{\hspace{0cm}} |p{4cm}|  @{\hspace{0cm}}|p{4cm}| @{\hspace{0cm}}|p{2cm}|}
+\hline
+\textbf{Acronym} & \textbf{Main Task and Objectives} & \textbf{Application} & \textbf{Related Technologies} & \textbf{Agents (Types)}\\
+\hline
+\textbf{GIM - Global Irrigation model} \cite{doll2002global} & Impact of climate change on computed net irrigation & Global & General Circulation Models (GCMs) to compute the change of IR under doubled $CO_2$ conditions, Global Irrigation Model (GIM) that is a module of WaterGAP (Global modeling of water resources and water use), Crop coefficient $k_c$, USDA Soil Conservation Method, CROPWAT (Calculation of crop water requirements and irrigation requirements based on soil, climate and crop data), ECHAM (Atmospheric general circulation model),  HadCM3 (Coupled atmosphere-ocean general circulation model) & No Agent Based Model\\
+\hline
+\textbf{AEZ (Agro-ecological Zoning)} \cite{fischer2007climate} & compute water movement through the soil – plant – atmosphere continuum, to assess net crop irrigation water requirements (WRQ) & Global &  FAO –
+IIASA (International Institute of Applied Systems Analysis),  BLS (Basic Linked System), CRU (climate database of the Climate Research Unit) , AQUASTAT (FAO's Information System on Water and Agriculture), EUROSTAT (European Statistics), WSI (water scarcity index) , (SRES) A2r (Special Report on Emissions Scenarios), GCMs (General Circulation Models), HadCM3 (Coupled atmosphere-ocean general circulation model) and CSIRO (Commonwealth Scientific and Industrial Research Organization) & No Agent Based Model\\
+\hline
+\textbf{BewUe (Bew\"aässerung Uelzen. Irrigation Uelzen} \cite{riediger2016modelling} & Plant water availability and irrigation requirements & model influence by regional climatic alterations and the regional variability on Germany (Diepholz, Uelzen, Fl\"aming and Oder-Spree) & RCP8.5 (Representative Concentration Pathway -  high greenhouse gas emission),  INM-CM4 (coupled model of the atmospheric and oceanic general circulations), ECHAM6 (Atmospheric general circulation model), Tmax (Based in general circulation climate model ACCESS1.0, WASMOD (Water and Substance Simulation Model &  No Agent Based Model\\
+\hline
+
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\newpage
+\begin{table}[h]
+\caption{Summary of Review system (Continuation)}
+\label{table_summary1}
+\begin{center}
+\begin{tabular}{@{\hspace{0cm}}|p{2cm}|     @{\hspace{0cm}}|p{2cm}|   @{\hspace{0cm}} |p{4cm}|  @{\hspace{0cm}}|p{4cm}| @{\hspace{0cm}}|p{2cm}|}
+\hline
+\textbf{Acronym} & \textbf{Main Task and Objectives} & \textbf{Application} & \textbf{Related Technologies} & \textbf{Agents (Types)}\\
+\hline
+\textbf{comprehensive model.Distributed crop water requirements with surface and groundwater mass balance} \cite{Perez2016} & Integrated water supply system Model & Fortore water supply system (Apulia region, South Italy) & Reservoir and groundwater, SPi-Q regression model (inflow to reservoir), GMAT( Monthly Soil water balance), Reservoir Water balance model (change in time), Aquifer water balance model & No Agent Based Model\\
+\hline
+\textbf{AdaptPumpa: Pumpa Irrigation System model} \cite{Guyennon2016} & Water management simulation & Pumpa irrigation system, a small-scale irrigation system in Nepal & Flood irrigation, ODD(Overview, design concepts, and details),Gini coefficient of yield,  Netlogo 5.0 & Six Irrigator sectors\\
+\hline
+\textbf{SWAP (Soil - Water - Atmosphere - Plant system)} \cite{de2017adaptability} &  identify crop adaptation options to face the expected changes in water availability by exploiting the existing intra-specific biodiversity of the tomato crop and accounting for irrigation management and the hydrological properties of soils & Irrigated district in southern Italy - Tomato crop & Pressurized pipeline network, and delivered on-demand,  HYPRES (hydraulic properties of European soils), RSWD (Relative Soil Water Deficit) & No Agent Based Model\\
+\hline
+\textbf{WAVE - Water and Agrochemicals in the soil, crop and Vadose Environment} \cite{vanclooster1994wave} &  describes the transport and transformations of matter and energy in the soil, crop and vadose environment & Global & MS-FORTRAN 5.10, SWATRER model, SOILN-model (nitrogen model), LEACHN(solute transport model), SUCROS (Universal Crop Growth model) & No Agent Based Model\\
+\hline
+\textbf{SPASMO - Soil Plant Atmosphere System} \cite{green2002pesticide} &   Physically-based dynamic generic plant growth and nutrient leaching model & Soil-plant-animal. Estimation of irrigation requirements, leaching (N, pesticides) from paddocks & Fortran, Graphical Desktop Command Line, Output database used in CLUES & No Agent Based Model\\
+\hline
+\textbf{WOFOST (World Food Studies)} \cite{diepen1989wofost} & Simulation model for the quantitative analysis of the growth and production of annual field crops   & Calculate attainable crop production, biomass, water use, etc. for a location given knowledge about soil type, crop type, weather data and crop management factors & dimensionless state variable development stage (DVS), PyWOFOST has been continued as part of the Python Crop Simulation Environment (PCSE) , CABO (weather format) & No Agent Based Model\\
+\hline
+
+\textbf{MACRO} \cite{larsbo2003macro} &  a model of water flow and solute transport in macroporous soil& Synthesize current understanding of flow and transport processes in structured soils & Penman - Monteith combination equation, Crank-Nicholson difference scheme  & No Agent Based Model\\
+\hline
+
+\textbf{CROPGRO} \cite{boote1998simulation} & simulate growth, development and yield of a common bean crop  &  It computes canopy photosynthesis at hourly time steps using leaf-level photosynthesis parameters and hedge-row light interception calculations &  SOYGRO (soybean crop growth simulation model), PNUTGRO (Peanut Crop Growth Simulation Model), and BEANGRO (A Process-Oriented Dry Bean Model with a Versatile User Interface). FORTRAN & No Agent Based Model\\
+\hline
+
+\textbf{DSSAT- Decision Support System for Agrotechnology Transfer} \cite{hoogenboom2004decision}, \cite{Huang2016} & Models of 42 different crops with software that facilitates the evaluation and application of the crop models for different purposes  & Simulate growth, development and yield as a function of the soil-plant-atmosphere dynamics   & CSM ( cropping system model design), CERES models for maize and wheat), SOYGRO (soybean crop growth simulation model), PNUTGRO (Peanut Crop Growth Simulation Model), CROPGRO  & No Agent Based Model\\
+\hline
+
+\end{tabular}
+\end{center}
+\end{table}
+
+
+\begin{table}[h]
+\caption{Summary of Review system (Continuation)}
+\label{table_summary2}
+\begin{center}
+\begin{tabular}{@{\hspace{0cm}}|p{2cm}|     @{\hspace{0cm}}|p{2cm}|   @{\hspace{0cm}} |p{4cm}|  @{\hspace{0cm}}|p{4cm}| @{\hspace{0cm}}|p{2cm}|}
+\hline
+\textbf{Acronym} & \textbf{Main Task and Objectives} & \textbf{Application} & \textbf{Related Technologies} & \textbf{Agents (Types)}\\
+\hline
+\textbf{MAPIS – Multi-agent  precision  irrigation 
+simulation} \cite{Grashey-Jansen2014} & Calculates soil specific and corresponding water 
+tensions by using pedotransfer functions  &  Quantification of the need for irrigation and the control of 
+the irrigation system  & SeSAm (Shell for Simulated Agent Systems),  pedotransfer functions (PTFs),  reference soil groups (RSGs),  World Reference Base 
+for  Soil  Resources  (WRB), GRIRIS – Grid-based irrigation simulation  & Moisture sensors and Dripping  units  \\
+\hline
+
+
+\textbf{Adaptive scheduling in deficit irrigation} \cite{holloway2008adaptive} & Real-time control system, which soil water representation models and heterogeneous sensor data sources & Simulation in deficit irrigation scheduling   & WSN (Wireless Sensor Network), moisture soil sensors, decision tree (WEKA), NetLogo   & 3D cubic representation of soil\\
+\hline
+
+\textbf{AMEIM - Agent-based  Middleware  for  Environmental  Information Management} \cite{Athanasiadis2005} &  Environmental data management tasks  & Middleware to support the capturing of environmental information and to present the data in the desired way so that the direct user can implement all kind of transformations and use all kind  of  data  through  the  function  classes  & Environmental Information Systems (EIS), Agent Object Relationship Modeling Language (AORML), Java  Agent  Development  Environment (JADE),  FIPA's Agent Communication Language, GAIA Methodology   & Contribution  Agents  (CA), Data Management  Agents (DMA), Distribution Agents (DA), Graphical  User  Interface  Agent.   
+\\
+\hline
+
+
+\textbf{Multi-agent,  Machine  Learning for Soil Textural Composition} \cite{Smith2009} & Multi-agent,  machine  learning 
+approach  to  classify  the  textural  composition  of  soil  within 
+the field using only soil moisture observations& Exploits  the  features  of  a  soil  water  retention  model using  machine  learning  algorithms and multiagents   &   UNSODA  database, Soil Water Retention  Curve (SWRC), Cone  Penetration  Testing, (CPT), inductive inference model,supervised  classification, neural  networks,  Bayesian  approaches, Support Vector Machine (SVM), simple Na\"ive Bayes classifier, Bayes network, Van Genutchen model, 70 sensors (soil water potential (15cm, 30cm and 45cm), humidity and temperature). Weather station (ET), wind and rainfall, NetLogo 3D  & Soil Agent Cube, Plant agents.
+\\
+\hline
+
+ \textbf{IEDSS - Interoperable Intelligent Environmental Decision Support Systems } \cite{S`anchez-Marr`e2014} & development of Interoperable Intelligent Environmental Decision Support Systems (IEDSS)  & Supervision of a Wastewater Treatment Plant  & Predictive  Model  Markup  Language (PMML),  XML (Extensible Markup Language), language,  Environmental  Decision  Support  Systems  (EDSS), JADEX Multiagent platform, BDI architecture,  Biological  Wastewater  Treatment  Plant (WWTP), GESCONDA tool & Diagnostic Model Executors Agent, Predictive Model Executor Agent.
+\\
+\hline
+
+
+\textbf{SHADOC} \cite{Barreteau2000}, \cite{barreteau2004suitability} & A	multi-agent	model to tackle viability of irrigated systems & Simulate viability of irrigated systems in the Senegal River Valley & Gravity irrigated system, Object-modeling technique OMT, Implemented in SmallTalk language under VisualWorks environment, Petri Nets   & Farmers with attributes: waterAllocation among farmer agents with their
+plot attribute along the same Watercourse instance, pumpStation management, creditAccess, production, food, land, waitingBetter.
+\\
+\hline
+
+\end{tabular}
+\end{center}
+\end{table}
+
+
+\begin{table}[h]
+\caption{Summary of Review system (Continuation)}
+\label{table_summary3}
+\begin{center}
+\begin{tabular}{@{\hspace{0cm}}|p{2cm}|     @{\hspace{0cm}}|p{2cm}|   @{\hspace{0cm}} |p{4cm}|  @{\hspace{0cm}}|p{4cm}| @{\hspace{0cm}}|p{2cm}|}
+\hline
+\textbf{Acronym} & \textbf{Main Task and Objectives} & \textbf{Application} & \textbf{Related Technologies} & \textbf{Agents (Types)}\\
+\hline
+\textbf{DSS-FS: A Decision Support System - Fertigation Simulator}\cite{Barradas2012} &  Fertigation Simulator Software. Decision Support System to Fertigation  & Design and optimization of sprinkler and drip irrigation systems & Drip and  sprinkler Irrigation, FAO-evapotranspiration, Shape of the wet bulb,  Electro-conductivity, pH, Sodicity index (SAR),Fertigation Efficiency Index (FEI), Visual Basic & No Agent Based Modeling
+\\
+\hline
+
+
+\textbf{MAS-CA  multi-agent/cellular automata approach} \cite{Berger2001} & Agent-based spatial models applied to agriculture:
+a simulation tool for technology diffusion, resource use changes and policy analysis    &  The applicability of the model is tested
+on an empirical policy-related research question in Chile &  Spatial cellular automata model, Geographic information systems (GIS), ASCII-text, C ++ object-oriented programming language & Farm-agents
+\\
+\hline
+
+\textbf{MUSA - Multiagent Simulation for consequential LCA of Agrosystems} \cite{Rege2015} & Modelling Price Discovery in an Agent Based
+Model for Agriculture in Luxembourg & Aims to simulate the future possible evolution of the Luxembourgish farming system, accounting for more factors than just the economy oriented drivers in farmers decision making processes  & LCA (Life cycle assessment), STATEC (Institut national de la statistique et des études économiques du Grand-Duché de Luxembourg), Java   & Entities: farmers agents, farms, product buyers, crop, description values, time, space.
+\\
+\hline
+
+\textbf{FIRMA - Freshwater Integrated Resource Management with Agents} \cite{Moss2000} \cite{Barthelemy2001} &  Agent Based Social Simulation Model of Water Demand Policy and Response  & The  model  integrates  a  hydrological  model parameterized  to  represent  the  effects  of  precipitation  and  temperature  on  water availability in the Thames region of southern England (including Oxford, London and 
+the Southeast) with a model of demand for water by households & SDML: A Multi-Agent Language for Organizational Modelling,  potential 
+evapotranspiration (PET), decision-making  process  is  the  endorsements mechanism, ABSS.   & thamesWorld agent, thamesGround agent and firmaModel agent, PolicyAgent, citoyen agents.    
+\\
+\hline
+
+\textbf{ABM - GIM. Agent based modeling for the gravity irrigation management} \cite{Belaqziz2011}, \cite{Belaqziz2013} & Gravity irrigation modeling by a multi-agent technology and irrigations  scheduling  optimization  using  an  evolutionary  algorithm & Simulation in the irrigated sector R3 is located in the eastern part of the semi-arid Tensift plain, at 40km from the city  of  Marrakech (Morocco)  & SAMIR (Satellite Monitoring off Irrigation),NDVI (Normalized Difference Vegetation Index), Crop Water stress ($K_s$) FAO-56 method, AML  language  (Agent  Modeling  Language),StarUML tool, UML (Unified Modeling Language), JADE platform (Java Agent Development Framework), FIPA specifications (Foundation for Intelligent Physical Agent), Irrigation  Priority  Index  (IPI), Covariance Matrix Adaptation Evolution Strategy (CMA-ES), Business Process Model and Notation (BPMN). & Supervisor agent, scheduler agent, operator agent, source agent, AUAW agent.
+\\
+\hline
+
+\textbf{MAS Garden Irrigation} \cite{Isern2012} & multi-agent system (MAS) to simulate the irrigation policy of a green area  & Simulates the behavior of an irrigation system and permits accurate determination of irrigation timing (scheduling) with case studies for garden irrigation &  sprinkler  irrigation, MESSAGE methodology, Unified Modeling Language (UML), Java Agent Development Framework (JADE), FIPA standards,  XML-based notation & Controller agent, Zone Agent, Sprinkler Agent, Species Agent, Fertilization Agent, Forze Fertilization Agent, Irrigation Agent.
+\\
+\hline
+
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{table}[h]
+\caption{Summary of Review system (Continuation)}
+\label{table_summary4}
+\begin{center}
+\begin{tabular}{@{\hspace{0cm}}|p{2cm}|     @{\hspace{0cm}}|p{2cm}|   @{\hspace{0cm}} |p{4cm}|  @{\hspace{0cm}}|p{4cm}| @{\hspace{0cm}}|p{2cm}|}
+\hline
+\textbf{Acronym} & \textbf{Main Task and Objectives} & \textbf{Application} & \textbf{Related Technologies} & \textbf{Agents (Types)}\\
+\hline
+
+\textbf{RMAS - Robot multi-agents system} \cite{pentjuss2011improving} & Application of multiagent systems in precision agriculture & Research in agent simulation tools, on decision making mechanisms creation with precision agriculture concepts   & homogeneous robot multi-agents system (RMAS), heterogeneous software multi-agents system (SMAS), Behavior  based  architecture  (BBA),  Sense-Model-Plan-Act architecture (SMPAA), hybrid architecture (HA), Global Positioning System (GPS), Geographic Information System (GIS), remote sensing, intelligent devices, computers & Information agent, Environmental agent, Robotic agent. 
+\\
+\hline
+
+
+\textbf{ABSTRACT - Agent Based Simulation Tool for Resource Allocation in a Catchment} \cite{Oel2010}, \cite{Oel2012} & MAS modeling, including agents equipped with simple decision-making heuristics based on empirical survey data to represent feedback processes between water availability and water use for irrigation, system components related to topography, hydrology, storage and water use for irrigation are
+included & Feedback mechanisms between water availability and water use in a semi-arid river basin   & CORMAS platform under the VISUALWORKS environment, Semi-distributed hydrologic modeling approach, ClimWat-FAO, WAVES project (Soil characteristics), Nash–Sutcliffe efficiency coefficient. & Farmer agents and Allocation Committee agents, Geographically located object classes are: Crop, River (branch) and Node. 
+\\
+\hline
+
+\textbf{MAS - Water Pollution Monitoring Systems}\cite{Oprea2006} & Intelligent  agent  software 
+technology  to  water  quality  monitoring   & Regulatory  compliance and Facilitate  response  to  contamination incidents & FIPA standard,  Gaia v.2 methodology, temperature,  turbidity,  conductivity,  pH,  free chloride, AUML notation & Monitor Agent, Supervisor Agent,  
+\\
+\hline
+
+\textbf{KatAWARE} \cite{Farolfi2010} & MAS model to represent water supply and demand dynamics at the catchment level  & Development of a collective management plan (CMP) with the KRWUA (Kat River Water User Association (KRWUA)), the ambition to go beyond visioning and move towards the real negotiation process leading to the technical decision-making phase & Companion Modelling (ComMod), Participatory Modelling (PM), Uniﬁed Modelling Language (UML), Role-playing game (RPG), CORMAS simulation framework, AWARE (Action Research and Watershed Analyses for Resource and Economic sustainability) model, & Villages Agents, Farm Agents  
+\\
+\hline
+
+\textbf{ABM - Water Quality Control} \cite{Nichita2007} & Development of a multiagent system for water pollution monitoring and control & Water quality control in the local water distribution system  in  the  region  Prahova - Romania. A community of agents is assigned to the task of monitoring a network of sensors in order to assess water quality in a distribution system, and to fire alarms in emergency situations  & TROPOS methodology, design tool TAOM4E, GAIA methodology, FIPA, JADE, AUML notation, turbidity,  organic  carbon  (TOC, DOC), nitrate, benzene, pH, electric conductivity, ORP, NH4, DO, redox, pressure, temperature and flow & Model Agent (MA), DataBase Management Agent (DMA), Reasoning Agent (RA) 
+\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{table}[h]
+\caption{Summary of Review system (Continuation)}
+\label{table_summary 5}
+\begin{center}
+\begin{tabular}{@{\hspace{0cm}}|p{2cm}|     @{\hspace{0cm}}|p{2cm}|   @{\hspace{0cm}} |p{4cm}|  @{\hspace{0cm}}|p{4cm}| @{\hspace{0cm}}|p{2cm}|}
+\hline
+\textbf{Acronym} & \textbf{Main Task and Objectives} & \textbf{Application} & \textbf{Related Technologies} & \textbf{Agents (Types)}\\
+\hline
+\textbf{NED-2} \cite{Nute2004} & Intelligent Information System designed to provide decision support for forest ecological system management in the eastern United States. & Powerful inventory, analysis tools, dialogs for selecting timber, water, ecological, wildlife, and visual goals, and dialogs for defining treatments and building prescriptive management plans  & Backboard - Central organizing principle, Attribute Object Value (AOV),  C ++,  GIS display, Fuzzy rule set,  HTML, metaknowledge,  & Treatment definition agent, Simulation agent, Goal analysis planning agent, Timber goal analysis agent, Wildlife goal analysis agent, Water goal analysis agent, Visual goal analysis agent, Ecology goal analysis agent GIS agent, Report generation agents.
+\\
+\hline
+
+\textbf{MAS-CHNs-WEB} \cite{hu2015design} & Watersheds are modeled as coupled human and natural systems (CHNSs) by coupling a multi-agent system (MAS) model and an environmental model & Irrigation Study and its environmental impacts in the Republican River basin. A multi-agent system model is designed to simulate the agents' pumping behaviors, and it is coupled with the physically-based RRCA groundwater model. The MAS model, which incorporates self-learning and utility   & Hadoop (cloud computing environment), CHNSs (coupled human and natural systems), BMP (Best management Practice), OPL (Our Pattern Language), RDBMS (relational database management systems), ACID-compliant (A: atomicity; C: Consistency; I: Isolation; D: Durability), RRCA Republican River Compact groundwater model, MODFLOW-2000, Fortran, Robust Optimization (RO) framework, Bayesian statistics, Object - oriented language, Java, Uniﬁed modeling language (UML), MATLAB nonlinear optimization solver, Asynchronous JavaScript and XML (AJAX) &  pumping Agents
+\\
+\hline
+
+\textbf{CORMAS-OLYMPE} \cite{bonte2005coupling} &  &  tool to support decision making processes  and  communication  and provides  an economic  synopsis of  the  complexity of  farming systems. West Kalimantan  (Borneo)  in Indonesia, where rubber farmers have diversified with oil  palm  and other  activities  and  also  integrated new cropping methods and improved agroforestry practices  & CORMAS, OLYMPE, XML files, UML classes & Farms, Towns
+\\
+\hline
+
+\textbf{CARISMA} \cite{Oviedo2014} & MultiAgent System for Remote Control of Solar Photovoltaic Power Plants  &  control and monitor solar panel farms & JADE, Desires, Beliefs and Intentions,  temperature, humidity, $CO_2$, and radiation sensors, Expert System, Neural Networks, Bayesian Networks,platform called PeMMAS, SquidBee,  inference systems & Teleoperator Agent, Coordinator agents, Operator Agents, Sensor-Device Agents, Remote Agent.
+\\
+\hline
+
+\textbf{DSS-PICO} \cite{perini2004developing} &  Decision support systems (DSS) based in MAS  &  DSS to be used by technicians of the advisory service performing pest management according to an integrated production approach. & Tropos, UML, GIS  & Producer Agent, Advisor Agent, Local Government Agent, Plant Disease Agent, GISP agent (Geographic Information Service), BDL agent (Disease Behavior Learner), Wrapper agents, Interface agent
+\\
+\hline
+
+\textbf{DAWN} \cite{athanasiadis2005hybrid} & Agent-based social model for the consumer with conventional econometric models and simulates the residential water demand-supply chain, enabling the evaluation of different scenarios for policy making & DAWN examines the propagation of water conservation signals in a simulation environment and can help water decision makers to understand the quantitative aspects of implementing an information and education policy toward controlling water demand & GAIA, Java Agent Development Environment (JADE), Physical Intelligent Agents (FIPA), Agent Object Relationship Modeling Language (AORML) & WAter supplier agent (WSA), consumer agents (CAs), Meteorologist agent (MOA), Simulator agent (SA)
+\\
+\hline
+
+
+\end{tabular}
+\end{center}
+\end{table}
+\twocolumn
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%   END TABLE     %%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{CONCLUSIONS}
+A conclusion section is not required. 
+%\addtolength{\textheight}{-12cm}   % This command serves to balance the column lengths
+\section*{APPENDIX}
+Appendixes should appear before the acknowledgment.
+\section*{ACKNOWLEDGMENT}
+The preferred spelling of the word. Put sponsor acknowledgments in the unnumbered footnote on the first page.\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{plain}
+\bibliography{Bibliography}
+
+%\begin{thebibliography}{99}
+
+%\bibitem{c1} G. O. Young, ÒSynthetic structure of industrial plastics (Book style with paper title and editor),Ó 	in Plastics, 2nd ed. vol. 3, J. Peters, Ed.  New York: McGraw-Hill, 1964, pp. 15Ð64.
+%\bibitem{c2} W.-K. Chen, Linear Networks and Systems (Book style).	Belmont, CA: Wadsworth, 1993, pp. 123Ð135.
+%\bibitem{c3} H. Poor, An Introduction to Signal Detection and Estimation.   New York: Springer-Verlag, 1985, ch. 4.
+%\bibitem{c4} B. Smith, ÒAn approach to graphs of linear forms (Unpublished work style),Ó unpublished.
+%\bibitem{c5} E. H. Miller, ÒA note on reflector arrays (Periodical styleÑAccepted for publication),Ó IEEE Trans. Antennas Propagat., to be publised.
+%\bibitem{c6} J. Wang, ÒFundamentals of erbium-doped fiber amplifiers arrays (Periodical styleÑSubmitted for publication),Ó IEEE J. Quantum Electron., submitted for publication.
+%\bibitem{c7} C. J. Kaufman, Rocky Mountain Research Lab., Boulder, CO, private communication, May 1995.
+%\bibitem{c8} Y. Yorozu, M. Hirano, K. Oka, and Y. Tagawa, ÒElectron spectroscopy studies on magneto-optical media and plastic substrate interfaces(Translation Journals style),Ó IEEE Transl. J. Magn.Jpn., vol. 2, Aug. 1987, pp. 740Ð741 [Dig. 9th Annu. Conf. Magnetics Japan, 1982, p. 301].
+%\bibitem{c9} M. Young, The Techincal Writers Handbook.  Mill Valley, CA: University Science, 1989.
+%\bibitem{c10} J. U. Duncombe, ÒInfrared navigationÑPart I: An assessment of feasibility (Periodical style),Ó IEEE Trans. Electron Devices, vol. ED-11, pp. 34Ð39, Jan. 1959.
+%\bibitem{c11} S. Chen, B. Mulgrew, and P. M. Grant, ÒA clustering technique for digital communications channel equalization using radial basis function networks,Ó IEEE Trans. Neural Networks, vol. 4, pp. 570Ð578, July 1993.
+%\bibitem{c12} R. W. Lucky, ÒAutomatic equalization for digital communication,Ó Bell Syst. Tech. J., vol. 44, no. 4, pp. 547Ð588, Apr. 1965.
+%\bibitem{c13} S. P. Bingulac, ÒOn the compatibility of adaptive controllers (Published Conference Proceedings style),Ó in Proc. 4th Annu. Allerton Conf. Circuits and Systems Theory, New York, 1994, pp. 8Ð16.
+%\bibitem{c14} G. R. Faulhaber, ÒDesign of service systems with priority reservation,Ó in Conf. Rec. 1995 IEEE Int. Conf. Communications, pp. 3Ð8.
+%\bibitem{c15} W. D. Doyle, ÒMagnetization reversal in films with biaxial anisotropy,Ó in 1987 Proc. INTERMAG Conf., pp. 2.2-1Ð2.2-6.
+%\bibitem{c16} G. W. Juette and L. E. Zeffanella, ÒRadio noise currents n short sections on bundle conductors (Presented Conference Paper style),Ó presented at the IEEE Summer power Meeting, Dallas, TX, June 22Ð27, 1990, Paper 90 SM 690-0 PWRS.
+%\bibitem{c17} J. G. Kreifeldt, ÒAn analysis of surface-detected EMG as an amplitude-modulated noise,Ó presented at the 1989 Int. Conf. Medicine and Biological Engineering, Chicago, IL.
+%\bibitem{c18} J. Williams, ÒNarrow-band analyzer (Thesis or Dissertation style),Ó Ph.D. dissertation, Dept. Elect. Eng., Harvard Univ., Cambridge, MA, 1993. 
+%\bibitem{c19} N. Kawasaki, ÒParametric study of thermal and chemical nonequilibrium nozzle flow,Ó M.S. thesis, Dept. Electron. Eng., Osaka Univ., Osaka, Japan, 1993.
+%\bibitem{c20} J. P. Wilkinson, ÒNonlinear resonant circuit devices (Patent style),Ó U.S. Patent 3 624 12, July 16, 1990. 
+%\end{thebibliography}
+
+\end{document}
